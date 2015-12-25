@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <p>This is head</p>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <h1>Test Base Template</h1>
+    {% block content %}{% endblock %}
+    <br>
+</body>
+    {% block footer %}
+        <p>This is default footer.</p>
+    {% endblock %}
+</html>

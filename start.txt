@@ -1,0 +1,63 @@
+Step 1 创建自己的server
+
+1. 安装 django:
+http://jingyan.baidu.com/article/466506580e7d29f549e5f8b6.html 
+同时请安装pycharm,很好用的ide.
+
+推荐使用django2.7， 3.*的MySQL支持的不是很好
+但是2.7在有的电脑上安装可能会有问题
+
+2. 创建project
+进入希望创建project的目录， run以下命令
+E:\zigstrat\python\MyDjango>python C:\Python34\Lib\site-packages\Django-1.10-py3
+.4.egg\django\bin\django-admin.py startproject myLesson
+
+3. 创建App
+注意：进入工程目录下，run以下命令
+E:\zigstrat\python\MyDjango\myLesson>python C:\Python34\Lib\site-packages\Django-1.10-py3
+.4.egg\django\bin\django-admin.py startapp myTest
+
+完成之后 要在settings.py 里面添加 myTest
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myTest',
+]
+
+4. Start Server
+E:\zigstrat\python\MyDjango\myLesson>python manage.py startserver
+
+
+Step 2 MyDjango>myLesson 工程
+
+1. 在myTest settings.py里有db 和 templates的设置
+python3.3默认是 sqllite， 使用MySQL需要下载第三方的包，MySQL官网只支持2.7。 3.*需要搜索相关的solution
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'), )
+
+2. url的配置。 url配置了网站的起始页面。
+我当前的配置是 localhost:8000 的话直接调用views方法
+
+from myTest.views import *
+url(r'', views),
+
+3. views
+在myTest>views.py 里面有几个例子，views是返回templates。我们的数据就是应该从这里传入template的。 我已经在测试的一个template就是 group.html.
+
+
+4. templates
+在myTest>templates 下面有两个我测试用的template。直接运行网站返回的就是group.html.
+是echart下面的组合图。 
+现在有个问题：
+1） 只能看到div 1

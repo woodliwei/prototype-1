@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>至构金融</title>
+    <!-- Bootstrap -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="static/css/bootstrap-multiselect.css" type="text/css"/>
+    <link href="static/css/mypage.css" rel="stylesheet">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header" style="width: 200px;">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img alt="Brand" src="static/img/logo_ok.png">
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">策略平台 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">大数据平台</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索">
+                    </div>
+                    <button type="submit" class="btn btn-default">确定</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"></a></li>
+                            <li><a href="#">战略合作</a></li>
+                            <li><a href="#">招聘</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+
+    <div class="list-group" style="width:200px; float:left;" >
+        <a href="#" class="list-group-item active">资金股票分配</a>
+        <a href="#" class="list-group-item">投资策略管理</a>
+        <a href="#" class="list-group-item">策略构建</a>
+        <a href="#" class="list-group-item">公式管理</a>
+        <a href="#" class="list-group-item">下单撤单</a>
+        <a href="#" class="list-group-item">资金进出管理</a>
+        <a href="#" class="list-group-item">股票池管理</a>
+        <a href="#" class="list-group-item">用户设置</a>
+
+    </div>
+
+    <div style="padding-left: 220px;">
+        <div class="page-header">
+            <h1>量化<small>趋势指标</small></h1>
+        </div>
+
+
+        <h3>选择目标股票</h3>
+        <select class="multiselect" multiple="multiple">
+            <option value="北大荒">北大荒</option>
+            <option value="罗牛山">罗牛山</option>
+            <option value="方向德农">方向德农</option>
+            <option value="农发种业">农发种业</option>
+            <option value="万福生科">万福生科</option>
+            <option value="通威股份">通威股份</option>
+            <option value="敦煌种业">敦煌种业</option>
+            <option value="金新农">金新农</option>
+            <option value="亚盛集团">亚盛集团</option>
+            <option value="新农开发">新农开发</option>
+            <option value="新赛股份">新赛股份</option>
+            <option value="金健米业">金健米业</option>
+            <option value="龙大肉食">龙大肉食</option>
+            <option value="星河生物">星河生物</option>
+            <option value="隆平高科">隆平高科</option>
+            <option value="千足珍珠">千足珍珠</option>
+        </select>
+        <h3>趋势跟踪</h3>
+        <div class="row">
+            <div class="col-md-3" >
+                <h4><span class="label label-success">买入</span></h4>
+                <select class="multiselect" >
+                    <option >五日上穿十日</option>
+                    <option >五日上穿二十日</option>
+                    <option >五日上穿三十日</option>
+                </select>
+            </div>
+            <div class="col-md-3" >
+                <h4><span class="label label-danger">卖出</span></h4>
+                <select class="multiselect" >
+                    <option >五日下穿十日</option>
+                    <option >五日下穿二十日</option>
+                    <option >五日下穿三十日</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">添加回测<span style="padding-left: 5px;" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+        <br>
+        <br>
+        <div class="panel panel-default" style="width: 95%">
+            <div class="panel-heading">回测项目<span class="badge">3</span>：</div>
+            <div class="panel-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">回测1</div>
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="label label-success">买入</span>五日上穿十日</li>
+                                <li class="list-group-item"><span class="label label-danger">卖出</span>五日下穿十日</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">回测2</div>
+
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="label label-success">买入</span>五日上穿二十日</li>
+                                <li class="list-group-item"><span class="label label-danger">卖出</span>五日下穿二十日</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">回测3</div>
+
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="label label-success">买入</span>五日上穿五十日</li>
+                                <li class="list-group-item"><span class="label label-danger">卖出</span>五日下穿五十日</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+<button class="btn btn-primary" type="submit">运行回测<span style="padding-left: 5px;" class="glyphicon glyphicon-forward" aria-hidden="true"></span></button>
+    </div>
+
+<br />
+    <br />
+    <br />
+    <br />
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.multiselect').multiselect(
+                    {numberDisplayed: 10}
+            );
+        });
+    </script>
+
+</body>
+</html>
