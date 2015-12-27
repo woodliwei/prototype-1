@@ -1,0 +1,122 @@
+{% extends "zigBigdataBase.html" %}
+
+{% block content %}
+    <div class="panel panel-default">
+  <div class="panel-body">
+    <div class="page-header">
+        <h1>量化<small>趋势指标</small></h1>
+    </div>
+
+
+    <h3>选择目标股票</h3>
+    <select class="multiselect" multiple="multiple">
+        <option value="北大荒">北大荒</option>
+        <option value="罗牛山">罗牛山</option>
+        <option value="方向德农">方向德农</option>
+        <option value="农发种业">农发种业</option>
+        <option value="万福生科">万福生科</option>
+        <option value="通威股份">通威股份</option>
+        <option value="敦煌种业">敦煌种业</option>
+        <option value="金新农">金新农</option>
+        <option value="亚盛集团">亚盛集团</option>
+        <option value="新农开发">新农开发</option>
+        <option value="新赛股份">新赛股份</option>
+        <option value="金健米业">金健米业</option>
+        <option value="龙大肉食">龙大肉食</option>
+        <option value="星河生物">星河生物</option>
+        <option value="隆平高科">隆平高科</option>
+        <option value="千足珍珠">千足珍珠</option>
+    </select>
+    <h3>趋势跟踪</h3>
+    <div class="row">
+        <div class="col-md-3" >
+            <h4><span class="label label-success">买入</span></h4>
+            <select class="multiselect" id="buyList" >
+                <option >五日上穿十日</option>
+                <option >五日上穿二十日</option>
+                <option >五日上穿三十日</option>
+            </select>
+        </div>
+        <div class="col-md-3" >
+            <h4><span class="label label-danger">卖出</span></h4>
+            <select class="multiselect" id="sellList">
+                <option >五日下穿十日</option>
+                <option >五日下穿二十日</option>
+                <option >五日下穿三十日</option>
+            </select>
+        </div>
+    </div>
+    <br><br>
+    <button class="btn btn-primary" type="submit" id="addTest">添加回测<span style="padding-left: 5px;" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+    <br>
+    <br>
+    <div class="panel panel-default" style="width: 95%">
+        <div class="panel-heading">回测项目<span class="badge" id="testCount">0</span>：</div>
+        <div class="panel-body">
+            <div class="row" id="testContainer"></div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">运行回测<span style="padding-left: 5px;" class="glyphicon glyphicon-forward" aria-hidden="true"></span></button>
+
+    <br/>
+
+    <!-- template of test case-->
+    <div class="col-md-3 alert alert-dismissible" style="opacity: 0;position: absolute;" id="testTemplate" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">回测</div>
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿五十日</span></li>
+                <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿五十日</span></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        var testcaseNum = 1;
+
+        //Init function
+        $(document).ready(function() {
+            $('.multiselect').multiselect(
+                    {numberDisplayed: 10}
+            );
+            $("#addTest").click(addTest);
+        });
+
+        function addTest(){
+            var singleTest = $("#testTemplate").clone();
+            singleTest.css("opacity",1);
+            singleTest.css("position","inherit");
+
+            singleTest.find(".buy").text(
+                    $("#buyList").val()
+            );
+            singleTest.find(".sell").text(
+                    $("#sellList").val()
+            );
+            singleTest.find(".panel-heading").text("测试" + testcaseNum);
+            testcaseNum++;
+
+            //add call back function to single test when close
+            singleTest.on('closed.bs.alert', function () {
+                var testContainer = $("#testContainer");
+                updateTestCount(testContainer);
+            });
+            //append to test container and update testcount.
+            var testContainer = $("#testContainer").append(singleTest);
+            updateTestCount(testContainer);
+        }
+
+        function updateTestCount(testContainer){
+            var dom = testContainer.get();
+            var totalTestCount = dom[0].children.length;
+            $("#testCount").text(totalTestCount);
+        }
+    </script>
+
+{% endblock %}
+

@@ -15,17 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.conf import settings
 
 from myTest.views import *
 urlpatterns = [
     url(r'^hello/$', hello),
     url(r'^hello/(\d+)/$', hello1),
-    url(r'^strategy/$', mavStrates),
+    url(r'^zigMain/$', zigMain),
     url(r'^admin/', admin.site.urls),
     url(r'^testBase/$', testBase),
     url(r'^testInclude/$', testInclude),
-    #url(r'', defaultViews),
+    url(r'^$', defaultViews),
 ]
 
 

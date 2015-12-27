@@ -1,3 +1,4 @@
+
 from __future__ import unicode_literals
 
 from django.shortcuts import render
@@ -34,6 +35,9 @@ def testBase(request):
 
 def testInclude(request):
     return render_to_response("includeTest.html", {"test": "test", })
+
+def zigMain(requst):
+    return render_to_response("zigBigdataMain.html", getActiveItems("zigBigdataMain"))
 
 def defaultViews(request):
     dateList = [
@@ -149,3 +153,28 @@ def defaultViews(request):
     return render_to_response('group.html', {"SHIndexName": json.dumps("上证指数"),
                                              "dateList": json.dumps(dateList),
                                              "marketData": json.dumps(marketData)})
+
+
+# Set active items in Title Bar and Nav Bar
+# {"stratActive": "active",
+#   "bigDataActive": "",
+#   "about": "",
+#   "trendTest": "active",
+#   "historyData": "",
+#   "historyTest": ""}
+def getActiveItems(pageName):
+    activeDict= {
+        "zigBigdataMain":
+            {
+              "bigDataActive": "active",
+              "trendTest": "active",
+             },
+        "zigStratMain":
+            {"stratActive": "active",
+              "bigDataActive": "",
+              "about": "",
+              "trendTest": "active",
+              "historyData": "",
+              "historyTest": ""},
+    }
+    return activeDict[pageName]
