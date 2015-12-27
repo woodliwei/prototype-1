@@ -10,31 +10,12 @@ import json
 # Create your views here.
 from django.http import HttpResponse
 
-def index(request):
-    return HttpResponse("First Page")
-
-def hello(request):
-    return HttpResponse("Hello world")
-
 def hello1(request, num):
     try:
         num = int(num)
     except ValueError:
         raise Http404()
 
-
-def strat_mva(request):
-    return render_to_response('group.html', {"SHIndexName": json.dumps("上证指数"),
-                                             "dateList": json.dumps(dateList),
-                                             "marketData": json.dumps(marketData)})
-def mavStrates(request):
-    return HttpResponse("Hello World")
-
-def testBase(request):
-    return render_to_response("testBase.html", {"testBaseTitle": "Test Base", })
-
-def testInclude(request):
-    return render_to_response("includeTest.html", {"test": "test", })
 
 def zigMain(requst):
     return render_to_response("zigBigdataMain.html", getActiveItems("zigBigdataMain"))

@@ -18,12 +18,9 @@ from django.contrib import admin
 
 from myTest.views import *
 urlpatterns = [
-    url(r'^hello/$', hello),
     url(r'^hello/(\d+)/$', hello1),
     url(r'^zigMain/$', zigMain),
     url(r'^admin/', admin.site.urls),
-    url(r'^testBase/$', testBase),
-    url(r'^testInclude/$', testInclude),
     url(r'^$', defaultViews),
 ]
 
