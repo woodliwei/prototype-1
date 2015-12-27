@@ -17,8 +17,13 @@ def hello1(request, num):
         raise Http404()
 
 
-def zigMain(requst):
+def zigBigdataMain(requst):
     return render_to_response("zigBigdataMain.html", getActiveItems("zigBigdataMain"))
+
+
+def zigStratMain(requst):
+    return render_to_response("zigStratMain.html", getActiveItems("zigStratMain"))
+
 
 def defaultViews(request):
     dateList = [
@@ -147,15 +152,14 @@ def getActiveItems(pageName):
     activeDict= {
         "zigBigdataMain":
             {
-              "bigDataActive": "active",
-              "trendTest": "active",
-             },
+                "bigDataActive": "active",
+                "trendTest": "active",
+            },
+
         "zigStratMain":
-            {"stratActive": "active",
-              "bigDataActive": "",
-              "about": "",
-              "trendTest": "active",
-              "historyData": "",
-              "historyTest": ""},
+            {
+                "stratActive": "active",
+                "trendTest": "active",
+            },
     }
     return activeDict[pageName]
