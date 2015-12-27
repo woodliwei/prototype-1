@@ -1,7 +1,7 @@
 2015-12-21
 1. enable css js img folder.
-   ×¢Òâ: folderÎª \MyDjango\myLesson\static
-   ¶ÔÓ¦µÄURLÎª http://locahost:port/static/
+   æ³¨æ„: folderä¸º \MyDjango\myLesson\static
+   å¯¹åº”çš„URLä¸º http://locahost:port/static/
 
 2. start working on main page of zigstrat. Using bootstrap framwork.
    check MyDjango\myLesson\bootstrap.html
