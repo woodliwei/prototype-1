@@ -1,4 +1,4 @@
-2015-12-21
+﻿2015-12-21
 1. enable css js img folder.
    注意: folder为 \MyDjango\myLesson\static
    对应的URL为 http://locahost:port/static/
@@ -7,3 +7,18 @@
    check MyDjango\myLesson\bootstrap.html
 
 3. about bootstrap please visit http://v3.bootcss.com/
+
+2015-12-25
+
+1. Create example of include header.html and footer.html.
+use: {% include "header.html" %}
+please try testInclude
+
+2. Create example of block in base.html
+use: 
+{% extends "base.html" %}
+{%  block title %}{{ testBaseTitle }}{% endblock %}
+
+please try testBase
+
+base.html is the base template for the other templates. By default the block will be inherited from base.html, you can also overwrite it in sub template.
