@@ -19,8 +19,8 @@ from prototype.views import *
 
 urlpatterns = [
     url(r'^hello/(\d+)/$', hello1),
-    url(r'^zigBigDataMain/$', zigBigdataMain),
-    url(r'^zigStratMain/$', zigStratMain),
+    url(r'^bigdata/$', zigBigdataMain),
+    url(r'^strategy/$', zigStratMain),
     url(r'^admin/', admin.site.urls),
     url(r'^$', zigStratMain),
 ]
