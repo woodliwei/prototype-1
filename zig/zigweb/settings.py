@@ -50,7 +50,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'myLesson.urls'
+ROOT_URLCONF = 'zigweb.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myLesson.wsgi.application'
+WSGI_APPLICATION = 'zigweb.wsgi.application'
 
 
 # Database
@@ -128,7 +128,7 @@ HERE = os.path.dirname(os.path.dirname(__file__))
 # WRONG! wrong DIR please refer following
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'), )
 
-# here the static_root is MyDjango\myLesson\static\ !!!
+# here the static_root is MyDjango\zig\static\ !!!
 STATIC_ROOT = os.path.join(HERE, 'static').replace('\\', '/')
 STATICFILES_DIRS = (
     ("css", os.path.join(STATIC_ROOT, 'css')),
