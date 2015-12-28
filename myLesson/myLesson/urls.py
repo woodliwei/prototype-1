@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from prototype.views import *
 
-from myTest.views import *
 urlpatterns = [
     url(r'^hello/(\d+)/$', hello1),
-    url(r'^zigMain/$', zigMain),
+    url(r'^zigBigDataMain/$', zigBigdataMain),
+    url(r'^zigStratMain/$', zigStratMain),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', defaultViews),
+    url(r'^$', zigStratMain),
 ]
 
 
