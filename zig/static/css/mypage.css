@@ -3,7 +3,12 @@
 body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 
 .dropdown-menu > li > a {
-  padding: 3px 30px;
+    padding: 3px 30px;
+}
+
+.formular
+{
+    width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
 }
 
 @media (min-width: 992px) {

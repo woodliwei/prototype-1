@@ -13,16 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
 from prototype.views import *
 
 urlpatterns = [
     url(r'^hello/(\d+)/$', hello1),
-    url(r'^bigdata/$', zigBigdataMain),
-    url(r'^strategy/$', zigStratMain),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', zigStratMain),
+    # the original url mapping changed to prototype/urls.py
+    url(r'', include('prototype.urls', namespace='zig-prototype'))
 ]
 
 

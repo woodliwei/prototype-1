@@ -17,12 +17,12 @@ def hello1(request, num):
         raise Http404()
 
 
-def zigBigdataMain(requst):
-    return render_to_response("zigBigdataMain.html", getActiveItems("zigBigdataMain"))
+def bigdata_trend_testing(requst):
+    return render_to_response("bigdata_trend_testing.html", getActiveItems("Bigdata"))
 
 
-def zigStratMain(requst):
-    return render_to_response("zigStratMain.html", getActiveItems("zigStratMain"))
+def strat_trend_manage(requst):
+    return render_to_response("strat_trend_manage.html", getActiveItems("Strategy"))
 
 
 #TODO: Guoqing: move following data to a data file
@@ -151,13 +151,13 @@ def defaultViews(request):
 #   "nav_historyTest": ""}
 def getActiveItems(pageName):
     activeDict= {
-        "zigBigdataMain":
+        "Bigdata":
             {
                 "title_bigData": "active",
                 "nav_trendTest": "active",
             },
 
-        "zigStratMain":
+        "Strategy":
             {
                 "title_strategy": "active",
                 "nav_index_manage": "active",
