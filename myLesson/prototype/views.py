@@ -25,6 +25,7 @@ def zigStratMain(requst):
     return render_to_response("zigStratMain.html", getActiveItems("zigStratMain"))
 
 
+#TODO: Guoqing: move following data to a data file
 def defaultViews(request):
     dateList = [
             "2013/1/24", "2013/1/25", "2013/1/28", "2013/1/29", "2013/1/30",
@@ -142,24 +143,24 @@ def defaultViews(request):
 
 
 # Set active items in Title Bar and Nav Bar
-# {"stratActive": "active",
-#   "bigDataActive": "",
+# {"title_strategy": "active",
+#   "title_bigData": "",
 #   "about": "",
-#   "trendTest": "active",
-#   "historyData": "",
-#   "historyTest": ""}
+#   "nav_trendTest": "active",
+#   "nav_historyData": "",
+#   "nav_historyTest": ""}
 def getActiveItems(pageName):
     activeDict= {
         "zigBigdataMain":
             {
-                "bigDataActive": "active",
-                "trendTest": "active",
+                "title_bigData": "active",
+                "nav_trendTest": "active",
             },
 
         "zigStratMain":
             {
-                "stratActive": "active",
-                "trendTest": "active",
+                "title_strategy": "active",
+                "nav_index_manage": "active",
             },
     }
     return activeDict[pageName]
