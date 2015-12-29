@@ -1,0 +1,1547 @@
+{% extends "strat_base.html" %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>量化<small>策略管理</small></h1>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>策略名称</th>
+                <th>状态</th>
+                <th>总资产</th>
+                <th>管理</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    均线策略1</td>
+                <td>
+                    <p class="formular">
+                        <span class="label label-success">运行</span>
+                    </p>
+                </td>
+                <td>1,356,000</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDiaglog" data-whatever="@mdo">...</button>
+                </td>
+            </tr>
+            <tr>
+                <td  >
+                    均线策略2</td>
+                <td>
+                    <p class="formular">
+                        <span class="label label-primary">NEW</span>
+                    </p>
+                </td>
+                <td>100,000</td>
+                <td >
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDiaglog" data-whatever="@mdo">...</button>
+                </td>
+            </tr>
+            <tr>
+                <td  >
+                    自定义策略
+                </td>
+                <td>
+                    <p class="formular">
+                        <span class="label label-danger">停止</span>
+                    </p>
+                </td>
+                <td>856,000</td>
+                <td >
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDiaglog" data-whatever="@mdo">...</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#amendDiaglog" >添加策略</button>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="modal fade" id="amendDiaglog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="index-name">策略名称:</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group" id="status-container">
+                            <label class="control-label">状态:</label>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">策略:</label>
+                            <div >
+                                <div class="panel panel-default">
+                                    <!-- List group -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿五十日</span></li>
+                                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿五十日</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">交易记录</label>
+                            <div class="tradingAction">
+{#               *************    Data Table   **************** #}
+                                <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">datetime</th>
+<th title="Field #2">action</th>
+<th title="Field #3">price</th>
+<th title="Field #4">vol</th>
+<th title="Field #5">cash</th>
+</tr></thead>
+<tbody><tr><td>2014/3/19</td>
+<td>sell</td>
+<td align="right">96.10</td>
+<td align="right">605</td>
+<td align="right">58109.073240</td>
+</tr>
+<tr><td>2014/3/7</td>
+<td>buy</td>
+<td align="right">95.50</td>
+<td align="right">605</td>
+<td align="right">57746.269450</td>
+</tr>
+<tr><td>2014/2/28</td>
+<td>sell</td>
+<td align="right">95.15</td>
+<td align="right">607</td>
+<td align="right">57746.269450</td>
+</tr>
+<tr><td>2014/2/6</td>
+<td>buy</td>
+<td align="right">94.14</td>
+<td align="right">607</td>
+<td align="right">57133.303270</td>
+</tr>
+<tr><td>2014/1/3</td>
+<td>sell</td>
+<td align="right">95.72</td>
+<td align="right">597</td>
+<td align="right">57133.303270</td>
+</tr>
+<tr><td>2013/12/19</td>
+<td>buy</td>
+<td align="right">94.34</td>
+<td align="right">597</td>
+<td align="right">56309.609600</td>
+</tr>
+<tr><td>2013/12/2</td>
+<td>sell</td>
+<td align="right">95.69</td>
+<td align="right">588</td>
+<td align="right">56309.609600</td>
+</tr>
+<tr><td>2013/10/29</td>
+<td>buy</td>
+<td align="right">94.45</td>
+<td align="right">588</td>
+<td align="right">55579.920850</td>
+</tr>
+<tr><td>2013/10/23</td>
+<td>sell</td>
+<td align="right">92.64</td>
+<td align="right">600</td>
+<td align="right">55579.920850</td>
+</tr>
+<tr><td>2013/10/15</td>
+<td>buy</td>
+<td align="right">92.24</td>
+<td align="right">600</td>
+<td align="right">55339.938470</td>
+</tr>
+<tr><td>2013/9/24</td>
+<td>sell</td>
+<td align="right">96.15</td>
+<td align="right">576</td>
+<td align="right">55339.938470</td>
+</tr>
+<tr><td>2013/8/27</td>
+<td>buy</td>
+<td align="right">92.52</td>
+<td align="right">576</td>
+<td align="right">53250.661540</td>
+</tr>
+<tr><td>2013/8/8</td>
+<td>sell</td>
+<td align="right">95.64</td>
+<td align="right">557</td>
+<td align="right">53250.661540</td>
+</tr>
+<tr><td>2013/7/31</td>
+<td>buy</td>
+<td align="right">95.68</td>
+<td align="right">557</td>
+<td align="right">53272.932830</td>
+</tr>
+<tr><td>2013/7/18</td>
+<td>sell</td>
+<td align="right">97.72</td>
+<td align="right">545</td>
+<td align="right">53272.932830</td>
+</tr>
+<tr><td>2013/6/27</td>
+<td>buy</td>
+<td align="right">97.21</td>
+<td align="right">545</td>
+<td align="right">52994.901760</td>
+</tr>
+<tr><td>2013/6/19</td>
+<td>sell</td>
+<td align="right">96.39</td>
+<td align="right">550</td>
+<td align="right">52994.901760</td>
+</tr>
+<tr><td>2013/6/10</td>
+<td>buy</td>
+<td align="right">97.09</td>
+<td align="right">550</td>
+<td align="right">53379.759440</td>
+</tr>
+<tr><td>2013/5/24</td>
+<td>sell</td>
+<td align="right">97.07</td>
+<td align="right">550</td>
+<td align="right">53379.759440</td>
+</tr>
+<tr><td>2013/5/16</td>
+<td>buy</td>
+<td align="right">97.88</td>
+<td align="right">550</td>
+<td align="right">53825.186500</td>
+</tr>
+<tr><td>2013/5/8</td>
+<td>sell</td>
+<td align="right">97.71</td>
+<td align="right">551</td>
+<td align="right">53825.186500</td>
+</tr>
+<tr><td>2013/4/29</td>
+<td>buy</td>
+<td align="right">98.90</td>
+<td align="right">551</td>
+<td align="right">54480.717890</td>
+</tr>
+<tr><td>2013/4/18</td>
+<td>sell</td>
+<td align="right">98.64</td>
+<td align="right">552</td>
+<td align="right">54480.717890</td>
+</tr>
+<tr><td>2013/3/27</td>
+<td>buy</td>
+<td align="right">95.73</td>
+<td align="right">552</td>
+<td align="right">52873.470440</td>
+</tr>
+<tr><td>2013/3/20</td>
+<td>sell</td>
+<td align="right">95.60</td>
+<td align="right">553</td>
+<td align="right">52873.470440</td>
+</tr>
+<tr><td>2013/2/22</td>
+<td>buy</td>
+<td align="right">91.46</td>
+<td align="right">553</td>
+<td align="right">50583.761570</td>
+</tr>
+<tr><td>2013/2/7</td>
+<td>sell</td>
+<td align="right">90.86</td>
+<td align="right">557</td>
+<td align="right">50583.761570</td>
+</tr>
+<tr><td>2013/1/4</td>
+<td>buy</td>
+<td align="right">86.27</td>
+<td align="right">557</td>
+<td align="right">48028.407560</td>
+</tr>
+<tr><td>2012/12/26</td>
+<td>sell</td>
+<td align="right">85.20</td>
+<td align="right">564</td>
+<td align="right">48028.407560</td>
+</tr>
+<tr><td>2012/11/20</td>
+<td>buy</td>
+<td align="right">81.53</td>
+<td align="right">564</td>
+<td align="right">45959.578260</td>
+</tr>
+<tr><td>2012/10/19</td>
+<td>sell</td>
+<td align="right">84.43</td>
+<td align="right">544</td>
+<td align="right">45959.578260</td>
+</tr>
+<tr><td>2012/10/10</td>
+<td>buy</td>
+<td align="right">87.93</td>
+<td align="right">544</td>
+<td align="right">47864.807730</td>
+</tr>
+<tr><td>2012/9/27</td>
+<td>sell</td>
+<td align="right">88.76</td>
+<td align="right">539</td>
+<td align="right">47864.807730</td>
+</tr>
+<tr><td>2012/8/20</td>
+<td>buy</td>
+<td align="right">83.25</td>
+<td align="right">539</td>
+<td align="right">44893.479540</td>
+</tr>
+<tr><td>2012/8/7</td>
+<td>sell</td>
+<td align="right">84.04</td>
+<td align="right">534</td>
+<td align="right">44893.479540</td>
+</tr>
+<tr><td>2012/8/1</td>
+<td>buy</td>
+<td align="right">84.44</td>
+<td align="right">534</td>
+<td align="right">45107.156260</td>
+</tr>
+<tr><td>2012/7/23</td>
+<td>sell</td>
+<td align="right">83.98</td>
+<td align="right">537</td>
+<td align="right">45107.156260</td>
+</tr>
+<tr><td>2012/7/3</td>
+<td>buy</td>
+<td align="right">83.64</td>
+<td align="right">537</td>
+<td align="right">44924.536190</td>
+</tr>
+<tr><td>2012/6/22</td>
+<td>sell</td>
+<td align="right">83.42</td>
+<td align="right">539</td>
+<td align="right">44924.536190</td>
+</tr>
+<tr><td>2012/6/11</td>
+<td>buy</td>
+<td align="right">81.76</td>
+<td align="right">539</td>
+<td align="right">44030.569160</td>
+</tr>
+<tr><td>2012/5/31</td>
+<td>sell</td>
+<td align="right">84.35</td>
+<td align="right">522</td>
+<td align="right">44030.569160</td>
+</tr>
+<tr><td>2012/5/23</td>
+<td>buy</td>
+<td align="right">85.70</td>
+<td align="right">522</td>
+<td align="right">44735.267060</td>
+</tr>
+<tr><td>2012/5/7</td>
+<td>sell</td>
+<td align="right">89.48</td>
+<td align="right">500</td>
+<td align="right">44735.267060</td>
+</tr>
+<tr><td>2012/4/30</td>
+<td>buy</td>
+<td align="right">91.30</td>
+<td align="right">500</td>
+<td align="right">45645.170800</td>
+</tr>
+<tr><td>2012/4/12</td>
+<td>sell</td>
+<td align="right">91.47</td>
+<td align="right">499</td>
+<td align="right">45645.170800</td>
+</tr>
+<tr><td>2012/3/29</td>
+<td>buy</td>
+<td align="right">91.47</td>
+<td align="right">499</td>
+<td align="right">45645.170800</td>
+</tr>
+<tr><td>2012/3/21</td>
+<td>sell</td>
+<td align="right">90.61</td>
+<td align="right">504</td>
+<td align="right">45645.170800</td>
+</tr>
+<tr><td>2012/3/6</td>
+<td>buy</td>
+<td align="right">93.58</td>
+<td align="right">504</td>
+<td align="right">47141.320860</td>
+</tr>
+<tr><td>2012/2/29</td>
+<td>sell</td>
+<td align="right">93.01</td>
+<td align="right">507</td>
+<td align="right">47141.320860</td>
+</tr>
+<tr><td>2012/2/21</td>
+<td>buy</td>
+<td align="right">93.49</td>
+<td align="right">507</td>
+<td align="right">47384.604740</td>
+</tr>
+<tr><td>2012/2/14</td>
+<td>sell</td>
+<td align="right">92.61</td>
+<td align="right">512</td>
+<td align="right">47384.604740</td>
+</tr>
+<tr><td>2012/2/3</td>
+<td>buy</td>
+<td align="right">93.04</td>
+<td align="right">512</td>
+<td align="right">47604.617490</td>
+</tr>
+<tr><td>2012/1/24</td>
+<td>sell</td>
+<td align="right">91.87</td>
+<td align="right">518</td>
+<td align="right">47604.617490</td>
+</tr>
+<tr><td>2012/1/10</td>
+<td>buy</td>
+<td align="right">92.75</td>
+<td align="right">518</td>
+<td align="right">48060.610340</td>
+</tr>
+<tr><td>2012/1/5</td>
+<td>sell</td>
+<td align="right">92.87</td>
+<td align="right">518</td>
+<td align="right">48060.610340</td>
+</tr>
+<tr><td>2011/11/29</td>
+<td>buy</td>
+<td align="right">86.95</td>
+<td align="right">518</td>
+<td align="right">44996.985780</td>
+</tr>
+<tr><td>2011/11/16</td>
+<td>sell</td>
+<td align="right">86.01</td>
+<td align="right">523</td>
+<td align="right">44996.985780</td>
+</tr>
+<tr><td>2011/10/10</td>
+<td>buy</td>
+<td align="right">81.73</td>
+<td align="right">523</td>
+<td align="right">42757.861270</td>
+</tr>
+<tr><td>2011/10/3</td>
+<td>sell</td>
+<td align="right">79.43</td>
+<td align="right">538</td>
+<td align="right">42757.861270</td>
+</tr>
+<tr><td>2011/9/28</td>
+<td>buy</td>
+<td align="right">81.28</td>
+<td align="right">538</td>
+<td align="right">43753.732390</td>
+</tr>
+<tr><td>2011/9/26</td>
+<td>sell</td>
+<td align="right">82.49</td>
+<td align="right">530</td>
+<td align="right">43753.732390</td>
+</tr>
+<tr><td>2011/9/16</td>
+<td>buy</td>
+<td align="right">81.52</td>
+<td align="right">530</td>
+<td align="right">43239.232200</td>
+</tr>
+<tr><td>2011/9/6</td>
+<td>sell</td>
+<td align="right">82.01</td>
+<td align="right">527</td>
+<td align="right">43239.232200</td>
+</tr>
+<tr><td>2011/8/12</td>
+<td>buy</td>
+<td align="right">79.34</td>
+<td align="right">527</td>
+<td align="right">41831.492290</td>
+</tr>
+<tr><td>2011/7/13</td>
+<td>sell</td>
+<td align="right">77.92</td>
+<td align="right">537</td>
+<td align="right">41831.492290</td>
+</tr>
+<tr><td>2011/6/10</td>
+<td>buy</td>
+<td align="right">73.70</td>
+<td align="right">537</td>
+<td align="right">39565.977700</td>
+</tr>
+<tr><td>2011/5/31</td>
+<td>sell</td>
+<td align="right">74.79</td>
+<td align="right">529</td>
+<td align="right">39565.977700</td>
+</tr>
+<tr><td>2011/3/24</td>
+<td>buy</td>
+<td align="right">68.21</td>
+<td align="right">529</td>
+<td align="right">36084.975780</td>
+</tr>
+<tr><td>2011/3/15</td>
+<td>sell</td>
+<td align="right">68.39</td>
+<td align="right">528</td>
+<td align="right">36084.975780</td>
+</tr>
+<tr><td>2011/3/2</td>
+<td>buy</td>
+<td align="right">68.00</td>
+<td align="right">528</td>
+<td align="right">35879.198030</td>
+</tr>
+<tr><td>2011/2/22</td>
+<td>sell</td>
+<td align="right">68.36</td>
+<td align="right">525</td>
+<td align="right">35879.198030</td>
+</tr>
+<tr><td>2011/2/7</td>
+<td>buy</td>
+<td align="right">66.33</td>
+<td align="right">525</td>
+<td align="right">34813.739100</td>
+</tr>
+<tr><td>2011/1/27</td>
+<td>sell</td>
+<td align="right">67.14</td>
+<td align="right">519</td>
+<td align="right">34813.739100</td>
+</tr>
+<tr><td>2011/1/19</td>
+<td>buy</td>
+<td align="right">68.04</td>
+<td align="right">519</td>
+<td align="right">35280.411210</td>
+</tr>
+<tr><td>2010/12/1</td>
+<td>sell</td>
+<td align="right">71.60</td>
+<td align="right">493</td>
+<td align="right">35280.411210</td>
+</tr>
+<tr><td>2010/11/22</td>
+<td>buy</td>
+<td align="right">71.25</td>
+<td align="right">493</td>
+<td align="right">35107.951100</td>
+</tr>
+<tr><td>2010/11/15</td>
+<td>sell</td>
+<td align="right">70.85</td>
+<td align="right">496</td>
+<td align="right">35107.951100</td>
+</tr>
+<tr><td>2010/11/3</td>
+<td>buy</td>
+<td align="right">70.33</td>
+<td align="right">496</td>
+<td align="right">34850.278060</td>
+</tr>
+<tr><td>2010/10/29</td>
+<td>sell</td>
+<td align="right">69.68</td>
+<td align="right">500</td>
+<td align="right">34850.278060</td>
+</tr>
+<tr><td>2010/10/4</td>
+<td>buy</td>
+<td align="right">67.15</td>
+<td align="right">500</td>
+<td align="right">33584.904880</td>
+</tr>
+<tr><td>2010/9/27</td>
+<td>sell</td>
+<td align="right">66.98</td>
+<td align="right">501</td>
+<td align="right">33584.904880</td>
+</tr>
+<tr><td>2010/9/20</td>
+<td>buy</td>
+<td align="right">67.30</td>
+<td align="right">501</td>
+<td align="right">33745.358290</td>
+</tr>
+<tr><td>2010/9/14</td>
+<td>sell</td>
+<td align="right">66.25</td>
+<td align="right">509</td>
+<td align="right">33745.358290</td>
+</tr>
+<tr><td>2010/8/4</td>
+<td>buy</td>
+<td align="right">62.87</td>
+<td align="right">509</td>
+<td align="right">32023.708310</td>
+</tr>
+<tr><td>2010/7/27</td>
+<td>sell</td>
+<td align="right">62.61</td>
+<td align="right">511</td>
+<td align="right">32023.708310</td>
+</tr>
+<tr><td>2010/7/26</td>
+<td>buy</td>
+<td align="right">63.03</td>
+<td align="right">511</td>
+<td align="right">32238.529550</td>
+</tr>
+<tr><td>2010/7/22</td>
+<td>sell</td>
+<td align="right">63.50</td>
+<td align="right">508</td>
+<td align="right">32238.529550</td>
+</tr>
+<tr><td>2010/7/7</td>
+<td>buy</td>
+<td align="right">59.86</td>
+<td align="right">508</td>
+<td align="right">30390.525650</td>
+</tr>
+<tr><td>2010/6/22</td>
+<td>sell</td>
+<td align="right">61.04</td>
+<td align="right">498</td>
+<td align="right">30390.525650</td>
+</tr>
+<tr><td>2010/6/2</td>
+<td>buy</td>
+<td align="right">60.27</td>
+<td align="right">498</td>
+<td align="right">30007.158930</td>
+</tr>
+<tr><td>2010/5/19</td>
+<td>sell</td>
+<td align="right">61.20</td>
+<td align="right">490</td>
+<td align="right">30007.158930</td>
+</tr>
+<tr><td>2010/5/13</td>
+<td>buy</td>
+<td align="right">62.18</td>
+<td align="right">490</td>
+<td align="right">30487.665720</td>
+</tr>
+<tr><td>2010/5/5</td>
+<td>sell</td>
+<td align="right">62.32</td>
+<td align="right">489</td>
+<td align="right">30487.665720</td>
+</tr>
+<tr><td>2010/3/9</td>
+<td>buy</td>
+<td align="right">57.41</td>
+<td align="right">489</td>
+<td align="right">28085.636860</td>
+</tr>
+<tr><td>2010/3/2</td>
+<td>sell</td>
+<td align="right">56.50</td>
+<td align="right">497</td>
+<td align="right">28085.636860</td>
+</tr>
+<tr><td>2010/2/17</td>
+<td>buy</td>
+<td align="right">56.19</td>
+<td align="right">497</td>
+<td align="right">27931.538670</td>
+</tr>
+<tr><td>2010/2/9</td>
+<td>sell</td>
+<td align="right">55.59</td>
+<td align="right">502</td>
+<td align="right">27931.538670</td>
+</tr>
+<tr><td>2010/1/13</td>
+<td>buy</td>
+<td align="right">54.73</td>
+<td align="right">502</td>
+<td align="right">27499.426360</td>
+</tr>
+<tr><td>2010/1/4</td>
+<td>sell</td>
+<td align="right">54.90</td>
+<td align="right">501</td>
+<td align="right">27499.426360</td>
+</tr>
+<tr><td>2009/12/15</td>
+<td>buy</td>
+<td align="right">54.22</td>
+<td align="right">501</td>
+<td align="right">27158.814160</td>
+</tr>
+<tr><td>2009/12/1</td>
+<td>sell</td>
+<td align="right">55.56</td>
+<td align="right">489</td>
+<td align="right">27158.814160</td>
+</tr>
+<tr><td>2009/11/3</td>
+<td>buy</td>
+<td align="right">51.36</td>
+<td align="right">489</td>
+<td align="right">25105.772050</td>
+</tr>
+<tr><td>2009/10/29</td>
+<td>sell</td>
+<td align="right">51.28</td>
+<td align="right">490</td>
+<td align="right">25105.772050</td>
+</tr>
+<tr><td>2009/10/9</td>
+<td>buy</td>
+<td align="right">49.16</td>
+<td align="right">490</td>
+<td align="right">24067.857920</td>
+</tr>
+<tr><td>2009/10/7</td>
+<td>sell</td>
+<td align="right">49.54</td>
+<td align="right">486</td>
+<td align="right">24067.857920</td>
+</tr>
+<tr><td>2009/9/17</td>
+<td>buy</td>
+<td align="right">48.95</td>
+<td align="right">486</td>
+<td align="right">23781.220130</td>
+</tr>
+<tr><td>2009/9/2</td>
+<td>sell</td>
+<td align="right">48.01</td>
+<td align="right">495</td>
+<td align="right">23781.220130</td>
+</tr>
+<tr><td>2009/8/21</td>
+<td>buy</td>
+<td align="right">48.36</td>
+<td align="right">495</td>
+<td align="right">23954.588740</td>
+</tr>
+<tr><td>2009/8/17</td>
+<td>sell</td>
+<td align="right">46.84</td>
+<td align="right">511</td>
+<td align="right">23954.588740</td>
+</tr>
+<tr><td>2009/8/10</td>
+<td>buy</td>
+<td align="right">48.36</td>
+<td align="right">511</td>
+<td align="right">24731.936630</td>
+</tr>
+<tr><td>2009/7/24</td>
+<td>sell</td>
+<td align="right">48.20</td>
+<td align="right">513</td>
+<td align="right">24731.936630</td>
+</tr>
+<tr><td>2009/7/15</td>
+<td>buy</td>
+<td align="right">49.06</td>
+<td align="right">513</td>
+<td align="right">25173.211840</td>
+</tr>
+<tr><td>2009/7/8</td>
+<td>sell</td>
+<td align="right">49.02</td>
+<td align="right">514</td>
+<td align="right">25173.211840</td>
+</tr>
+<tr><td>2009/6/30</td>
+<td>buy</td>
+<td align="right">49.41</td>
+<td align="right">514</td>
+<td align="right">25373.488310</td>
+</tr>
+<tr><td>2009/6/10</td>
+<td>sell</td>
+<td align="right">50.16</td>
+<td align="right">506</td>
+<td align="right">25373.488310</td>
+</tr>
+<tr><td>2009/5/19</td>
+<td>buy</td>
+<td align="right">45.92</td>
+<td align="right">506</td>
+<td align="right">23228.679890</td>
+</tr>
+<tr><td>2009/5/15</td>
+<td>sell</td>
+<td align="right">45.57</td>
+<td align="right">510</td>
+<td align="right">23228.679890</td>
+</tr>
+<tr><td>2009/4/22</td>
+<td>buy</td>
+<td align="right">46.24</td>
+<td align="right">510</td>
+<td align="right">23570.203160</td>
+</tr>
+<tr><td>2009/4/13</td>
+<td>sell</td>
+<td align="right">47.83</td>
+<td align="right">493</td>
+<td align="right">23570.203160</td>
+</tr>
+<tr><td>2009/3/12</td>
+<td>buy</td>
+<td align="right">44.47</td>
+<td align="right">493</td>
+<td align="right">21914.424730</td>
+</tr>
+<tr><td>2009/2/10</td>
+<td>sell</td>
+<td align="right">48.38</td>
+<td align="right">453</td>
+<td align="right">21914.424730</td>
+</tr>
+<tr><td>2009/2/6</td>
+<td>buy</td>
+<td align="right">49.37</td>
+<td align="right">453</td>
+<td align="right">22362.859630</td>
+</tr>
+<tr><td>2009/2/2</td>
+<td>sell</td>
+<td align="right">48.90</td>
+<td align="right">457</td>
+<td align="right">22362.859630</td>
+</tr>
+<tr><td>2009/1/26</td>
+<td>buy</td>
+<td align="right">49.32</td>
+<td align="right">457</td>
+<td align="right">22554.933270</td>
+</tr>
+<tr><td>2009/1/8</td>
+<td>sell</td>
+<td align="right">51.11</td>
+<td align="right">441</td>
+<td align="right">22554.933270</td>
+</tr>
+<tr><td>2008/12/30</td>
+<td>buy</td>
+<td align="right">52.14</td>
+<td align="right">441</td>
+<td align="right">23009.474090</td>
+</tr>
+<tr><td>2008/12/22</td>
+<td>sell</td>
+<td align="right">51.85</td>
+<td align="right">444</td>
+<td align="right">23009.474090</td>
+</tr>
+<tr><td>2008/11/26</td>
+<td>buy</td>
+<td align="right">48.90</td>
+<td align="right">444</td>
+<td align="right">21700.352610</td>
+</tr>
+<tr><td>2008/11/19</td>
+<td>sell</td>
+<td align="right">46.41</td>
+<td align="right">468</td>
+<td align="right">21700.352610</td>
+</tr>
+<tr><td>2008/11/17</td>
+<td>buy</td>
+<td align="right">46.55</td>
+<td align="right">468</td>
+<td align="right">21765.813710</td>
+</tr>
+<tr><td>2008/11/6</td>
+<td>sell</td>
+<td align="right">45.35</td>
+<td align="right">480</td>
+<td align="right">21765.813710</td>
+</tr>
+<tr><td>2008/10/29</td>
+<td>buy</td>
+<td align="right">47.87</td>
+<td align="right">480</td>
+<td align="right">22975.292220</td>
+</tr>
+<tr><td>2008/10/20</td>
+<td>sell</td>
+<td align="right">47.58</td>
+<td align="right">483</td>
+<td align="right">22975.292220</td>
+</tr>
+<tr><td>2008/10/16</td>
+<td>buy</td>
+<td align="right">45.59</td>
+<td align="right">483</td>
+<td align="right">22014.366800</td>
+</tr>
+<tr><td>2008/9/19</td>
+<td>sell</td>
+<td align="right">53.56</td>
+<td align="right">411</td>
+<td align="right">22014.366800</td>
+</tr>
+<tr><td>2008/9/10</td>
+<td>buy</td>
+<td align="right">52.91</td>
+<td align="right">411</td>
+<td align="right">21747.202150</td>
+</tr>
+<tr><td>2008/9/3</td>
+<td>sell</td>
+<td align="right">51.67</td>
+<td align="right">421</td>
+<td align="right">21747.202150</td>
+</tr>
+<tr><td>2008/8/29</td>
+<td>buy</td>
+<td align="right">51.90</td>
+<td align="right">421</td>
+<td align="right">21844.006030</td>
+</tr>
+<tr><td>2008/8/15</td>
+<td>sell</td>
+<td align="right">52.94</td>
+<td align="right">413</td>
+<td align="right">21844.006030</td>
+</tr>
+<tr><td>2008/7/31</td>
+<td>buy</td>
+<td align="right">49.75</td>
+<td align="right">413</td>
+<td align="right">20527.754060</td>
+</tr>
+<tr><td>2008/7/24</td>
+<td>sell</td>
+<td align="right">48.57</td>
+<td align="right">423</td>
+<td align="right">20527.754060</td>
+</tr>
+<tr><td>2008/7/3</td>
+<td>buy</td>
+<td align="right">47.58</td>
+<td align="right">423</td>
+<td align="right">20109.337830</td>
+</tr>
+<tr><td>2008/6/19</td>
+<td>sell</td>
+<td align="right">48.75</td>
+<td align="right">412</td>
+<td align="right">20109.337830</td>
+</tr>
+<tr><td>2008/6/10</td>
+<td>buy</td>
+<td align="right">49.73</td>
+<td align="right">412</td>
+<td align="right">20513.587080</td>
+</tr>
+<tr><td>2008/6/4</td>
+<td>sell</td>
+<td align="right">47.93</td>
+<td align="right">428</td>
+<td align="right">20513.587080</td>
+</tr>
+<tr><td>2008/6/2</td>
+<td>buy</td>
+<td align="right">48.40</td>
+<td align="right">428</td>
+<td align="right">20714.742640</td>
+</tr>
+<tr><td>2008/5/20</td>
+<td>sell</td>
+<td align="right">49.34</td>
+<td align="right">420</td>
+<td align="right">20714.742640</td>
+</tr>
+<tr><td>2008/5/14</td>
+<td>buy</td>
+<td align="right">49.96</td>
+<td align="right">420</td>
+<td align="right">20975.041390</td>
+</tr>
+<tr><td>2008/5/8</td>
+<td>sell</td>
+<td align="right">49.41</td>
+<td align="right">425</td>
+<td align="right">20975.041390</td>
+</tr>
+<tr><td>2008/4/15</td>
+<td>buy</td>
+<td align="right">46.26</td>
+<td align="right">425</td>
+<td align="right">19637.834750</td>
+</tr>
+<tr><td>2008/4/8</td>
+<td>sell</td>
+<td align="right">46.19</td>
+<td align="right">425</td>
+<td align="right">19637.834750</td>
+</tr>
+<tr><td>2008/3/12</td>
+<td>buy</td>
+<td align="right">44.39</td>
+<td align="right">425</td>
+<td align="right">18872.558660</td>
+</tr>
+<tr><td>2008/2/27</td>
+<td>sell</td>
+<td align="right">45.43</td>
+<td align="right">415</td>
+<td align="right">18872.558660</td>
+</tr>
+<tr><td>2008/2/25</td>
+<td>buy</td>
+<td align="right">46.02</td>
+<td align="right">415</td>
+<td align="right">19117.656820</td>
+</tr>
+<tr><td>2008/2/20</td>
+<td>sell</td>
+<td align="right">46.14</td>
+<td align="right">414</td>
+<td align="right">19117.656820</td>
+</tr>
+<tr><td>2008/2/4</td>
+<td>buy</td>
+<td align="right">44.24</td>
+<td align="right">414</td>
+<td align="right">18330.410440</td>
+</tr>
+<tr><td>2007/12/31</td>
+<td>sell</td>
+<td align="right">48.37</td>
+<td align="right">379</td>
+<td align="right">18330.410440</td>
+</tr>
+<tr><td>2007/12/27</td>
+<td>buy</td>
+<td align="right">48.60</td>
+<td align="right">379</td>
+<td align="right">18417.571790</td>
+</tr>
+<tr><td>2007/12/17</td>
+<td>sell</td>
+<td align="right">49.07</td>
+<td align="right">375</td>
+<td align="right">18417.571790</td>
+</tr>
+<tr><td>2007/11/30</td>
+<td>buy</td>
+<td align="right">48.01</td>
+<td align="right">375</td>
+<td align="right">18019.719210</td>
+</tr>
+<tr><td>2007/11/27</td>
+<td>sell</td>
+<td align="right">47.18</td>
+<td align="right">382</td>
+<td align="right">18019.719210</td>
+</tr>
+<tr><td>2007/11/16</td>
+<td>buy</td>
+<td align="right">47.73</td>
+<td align="right">382</td>
+<td align="right">18229.783760</td>
+</tr>
+<tr><td>2007/11/8</td>
+<td>sell</td>
+<td align="right">47.50</td>
+<td align="right">384</td>
+<td align="right">18229.783760</td>
+</tr>
+<tr><td>2007/10/23</td>
+<td>buy</td>
+<td align="right">45.58</td>
+<td align="right">384</td>
+<td align="right">17492.916710</td>
+</tr>
+<tr><td>2007/10/16</td>
+<td>sell</td>
+<td align="right">45.45</td>
+<td align="right">385</td>
+<td align="right">17492.916710</td>
+</tr>
+<tr><td>2007/10/1</td>
+<td>buy</td>
+<td align="right">44.81</td>
+<td align="right">385</td>
+<td align="right">17246.591810</td>
+</tr>
+<tr><td>2007/9/25</td>
+<td>sell</td>
+<td align="right">43.32</td>
+<td align="right">398</td>
+<td align="right">17246.591810</td>
+</tr>
+<tr><td>2007/9/6</td>
+<td>buy</td>
+<td align="right">39.81</td>
+<td align="right">398</td>
+<td align="right">15849.187910</td>
+</tr>
+<tr><td>2007/8/30</td>
+<td>sell</td>
+<td align="right">39.07</td>
+<td align="right">406</td>
+<td align="right">15849.187910</td>
+</tr>
+<tr><td>2007/8/22</td>
+<td>buy</td>
+<td align="right">39.49</td>
+<td align="right">406</td>
+<td align="right">16019.565660</td>
+</tr>
+<tr><td>2007/8/14</td>
+<td>sell</td>
+<td align="right">38.40</td>
+<td align="right">417</td>
+<td align="right">16019.565660</td>
+</tr>
+<tr><td>2007/8/7</td>
+<td>buy</td>
+<td align="right">39.79</td>
+<td align="right">417</td>
+<td align="right">16599.440560</td>
+</tr>
+<tr><td>2007/7/24</td>
+<td>sell</td>
+<td align="right">41.24</td>
+<td align="right">403</td>
+<td align="right">16599.440560</td>
+</tr>
+<tr><td>2007/7/13</td>
+<td>buy</td>
+<td align="right">41.53</td>
+<td align="right">403</td>
+<td align="right">16716.167960</td>
+</tr>
+<tr><td>2007/7/9</td>
+<td>sell</td>
+<td align="right">40.91</td>
+<td align="right">409</td>
+<td align="right">16716.167960</td>
+</tr>
+<tr><td>2007/7/5</td>
+<td>buy</td>
+<td align="right">40.97</td>
+<td align="right">409</td>
+<td align="right">16740.684460</td>
+</tr>
+<tr><td>2007/6/21</td>
+<td>sell</td>
+<td align="right">40.86</td>
+<td align="right">410</td>
+<td align="right">16740.684460</td>
+</tr>
+<tr><td>2007/6/6</td>
+<td>buy</td>
+<td align="right">40.51</td>
+<td align="right">410</td>
+<td align="right">16597.286530</td>
+</tr>
+<tr><td>2007/4/27</td>
+<td>sell</td>
+<td align="right">39.16</td>
+<td align="right">424</td>
+<td align="right">16597.286530</td>
+</tr>
+<tr><td>2007/3/20</td>
+<td>buy</td>
+<td align="right">35.45</td>
+<td align="right">424</td>
+<td align="right">15024.867400</td>
+</tr>
+<tr><td>2007/3/16</td>
+<td>sell</td>
+<td align="right">34.79</td>
+<td align="right">432</td>
+<td align="right">15024.867400</td>
+</tr>
+<tr><td>2007/3/12</td>
+<td>buy</td>
+<td align="right">35.74</td>
+<td align="right">432</td>
+<td align="right">15435.146910</td>
+</tr>
+<tr><td>2007/2/27</td>
+<td>sell</td>
+<td align="right">35.57</td>
+<td align="right">434</td>
+<td align="right">15435.146910</td>
+</tr>
+<tr><td>2007/2/1</td>
+<td>buy</td>
+<td align="right">35.59</td>
+<td align="right">434</td>
+<td align="right">15443.825650</td>
+</tr>
+<tr><td>2007/1/24</td>
+<td>sell</td>
+<td align="right">35.33</td>
+<td align="right">437</td>
+<td align="right">15443.825650</td>
+</tr>
+<tr><td>2007/1/11</td>
+<td>buy</td>
+<td align="right">35.61</td>
+<td align="right">437</td>
+<td align="right">15566.222230</td>
+</tr>
+<tr><td>2007/1/5</td>
+<td>sell</td>
+<td align="right">34.83</td>
+<td align="right">447</td>
+<td align="right">15566.222230</td>
+</tr>
+<tr><td>2006/12/1</td>
+<td>buy</td>
+<td align="right">33.67</td>
+<td align="right">447</td>
+<td align="right">15047.795080</td>
+</tr>
+<tr><td>2006/11/28</td>
+<td>sell</td>
+<td align="right">33.12</td>
+<td align="right">454</td>
+<td align="right">15047.795080</td>
+</tr>
+<tr><td>2006/11/9</td>
+<td>buy</td>
+<td align="right">32.87</td>
+<td align="right">454</td>
+<td align="right">14934.209670</td>
+</tr>
+<tr><td>2006/11/1</td>
+<td>sell</td>
+<td align="right">32.69</td>
+<td align="right">457</td>
+<td align="right">14934.209670</td>
+</tr>
+<tr><td>2006/10/25</td>
+<td>buy</td>
+<td align="right">32.80</td>
+<td align="right">457</td>
+<td align="right">14984.462440</td>
+</tr>
+<tr><td>2006/10/20</td>
+<td>sell</td>
+<td align="right">32.39</td>
+<td align="right">463</td>
+<td align="right">14984.462440</td>
+</tr>
+<tr><td>2006/8/30</td>
+<td>buy</td>
+<td align="right">28.23</td>
+<td align="right">463</td>
+<td align="right">13059.937470</td>
+</tr>
+<tr><td>2006/8/24</td>
+<td>sell</td>
+<td align="right">28.02</td>
+<td align="right">466</td>
+<td align="right">13059.937470</td>
+</tr>
+<tr><td>2006/8/16</td>
+<td>buy</td>
+<td align="right">28.09</td>
+<td align="right">466</td>
+<td align="right">13092.564010</td>
+</tr>
+<tr><td>2006/8/9</td>
+<td>sell</td>
+<td align="right">26.83</td>
+<td align="right">488</td>
+<td align="right">13092.564010</td>
+</tr>
+<tr><td>2006/7/14</td>
+<td>buy</td>
+<td align="right">25.80</td>
+<td align="right">488</td>
+<td align="right">12589.942280</td>
+</tr>
+<tr><td>2006/7/12</td>
+<td>sell</td>
+<td align="right">26.40</td>
+<td align="right">477</td>
+<td align="right">12589.942280</td>
+</tr>
+<tr><td>2006/6/30</td>
+<td>buy</td>
+<td align="right">26.24</td>
+<td align="right">477</td>
+<td align="right">12513.639600</td>
+</tr>
+<tr><td>2006/6/26</td>
+<td>sell</td>
+<td align="right">25.51</td>
+<td align="right">491</td>
+<td align="right">12513.639600</td>
+</tr>
+<tr><td>2006/6/20</td>
+<td>buy</td>
+<td align="right">25.74</td>
+<td align="right">491</td>
+<td align="right">12626.463480</td>
+</tr>
+<tr><td>2006/6/12</td>
+<td>sell</td>
+<td align="right">25.72</td>
+<td align="right">491</td>
+<td align="right">12626.463480</td>
+</tr>
+<tr><td>2006/6/5</td>
+<td>buy</td>
+<td align="right">25.89</td>
+<td align="right">491</td>
+<td align="right">12709.919890</td>
+</tr>
+<tr><td>2006/5/15</td>
+<td>sell</td>
+<td align="right">27.31</td>
+<td align="right">465</td>
+<td align="right">12709.919890</td>
+</tr>
+<tr><td>2006/5/2</td>
+<td>buy</td>
+<td align="right">26.87</td>
+<td align="right">465</td>
+<td align="right">12505.146370</td>
+</tr>
+<tr><td>2006/3/24</td>
+<td>sell</td>
+<td align="right">27.10</td>
+<td align="right">461</td>
+<td align="right">12505.146370</td>
+</tr>
+<tr><td>2006/3/16</td>
+<td>buy</td>
+<td align="right">27.38</td>
+<td align="right">461</td>
+<td align="right">12634.350830</td>
+</tr>
+<tr><td>2006/2/16</td>
+<td>sell</td>
+<td align="right">28.40</td>
+<td align="right">445</td>
+<td align="right">12634.350830</td>
+</tr>
+<tr><td>2006/2/2</td>
+<td>buy</td>
+<td align="right">27.69</td>
+<td align="right">445</td>
+<td align="right">12318.492060</td>
+</tr>
+<tr><td>2006/1/27</td>
+<td>sell</td>
+<td align="right">27.37</td>
+<td align="right">450</td>
+<td align="right">12318.492060</td>
+</tr>
+<tr><td>2006/1/9</td>
+<td>buy</td>
+<td align="right">27.11</td>
+<td align="right">450</td>
+<td align="right">12201.473140</td>
+</tr>
+<tr><td>2005/12/13</td>
+<td>sell</td>
+<td align="right">27.54</td>
+<td align="right">443</td>
+<td align="right">12201.473140</td>
+</tr>
+<tr><td>2005/11/25</td>
+<td>buy</td>
+<td align="right">26.13</td>
+<td align="right">443</td>
+<td align="right">11576.778980</td>
+</tr>
+<tr><td>2005/11/18</td>
+<td>sell</td>
+<td align="right">25.84</td>
+<td align="right">448</td>
+<td align="right">11576.778980</td>
+</tr>
+<tr><td>2005/11/3</td>
+<td>buy</td>
+<td align="right">25.43</td>
+<td align="right">448</td>
+<td align="right">11393.091700</td>
+</tr>
+<tr><td>2005/10/26</td>
+<td>sell</td>
+<td align="right">24.73</td>
+<td align="right">461</td>
+<td align="right">11393.091700</td>
+</tr>
+<tr><td>2005/10/18</td>
+<td>buy</td>
+<td align="right">24.85</td>
+<td align="right">461</td>
+<td align="right">11448.375600</td>
+</tr>
+<tr><td>2005/10/6</td>
+<td>sell</td>
+<td align="right">25.05</td>
+<td align="right">457</td>
+<td align="right">11448.375600</td>
+</tr>
+<tr><td>2005/9/28</td>
+<td>buy</td>
+<td align="right">25.33</td>
+<td align="right">457</td>
+<td align="right">11576.341480</td>
+</tr>
+<tr><td>2005/9/16</td>
+<td>sell</td>
+<td align="right">26.20</td>
+<td align="right">442</td>
+<td align="right">11576.341480</td>
+</tr>
+<tr><td>2005/9/8</td>
+<td>buy</td>
+<td align="right">25.54</td>
+<td align="right">442</td>
+<td align="right">11284.723720</td>
+</tr>
+<tr><td>2005/8/22</td>
+<td>sell</td>
+<td align="right">25.48</td>
+<td align="right">443</td>
+<td align="right">11284.723720</td>
+</tr>
+<tr><td>2005/8/1</td>
+<td>buy</td>
+<td align="right">23.86</td>
+<td align="right">443</td>
+<td align="right">10567.249130</td>
+</tr>
+<tr><td>2005/7/26</td>
+<td>sell</td>
+<td align="right">23.23</td>
+<td align="right">455</td>
+<td align="right">10567.249130</td>
+</tr>
+<tr><td>2005/7/8</td>
+<td>buy</td>
+<td align="right">21.92</td>
+<td align="right">455</td>
+<td align="right">9971.334522</td>
+</tr>
+<tr><td>2005/6/2</td>
+<td>sell</td>
+<td align="right">23.82</td>
+<td align="right">419</td>
+<td align="right">9971.334522</td>
+</tr>
+<tr><td>2005/5/17</td>
+<td>buy</td>
+<td align="right">22.94</td>
+<td align="right">419</td>
+<td align="right">9602.956085</td>
+</tr>
+<tr><td>2005/5/13</td>
+<td>sell</td>
+<td align="right">22.69</td>
+<td align="right">423</td>
+<td align="right">9602.956085</td>
+</tr>
+<tr><td>2005/4/8</td>
+<td>buy</td>
+<td align="right">23.83</td>
+<td align="right">423</td>
+<td align="right">10085.431620</td>
+</tr>
+<tr><td>2005/3/10</td>
+<td>sell</td>
+<td align="right">25.06</td>
+<td align="right">402</td>
+<td align="right">10085.431620</td>
+</tr>
+<tr><td>2005/2/25</td>
+<td>buy</td>
+<td align="right">25.24</td>
+<td align="right">402</td>
+<td align="right">10157.872870</td>
+</tr>
+<tr><td>2005/2/22</td>
+<td>sell</td>
+<td align="right">24.45</td>
+<td align="right">415</td>
+<td align="right">10157.872870</td>
+</tr>
+<tr><td>2005/1/20</td>
+<td>buy</td>
+<td align="right">24.07</td>
+<td align="right">415</td>
+<td align="right">10000.000000</td>
+</tr>
+</tbody></table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    (demo only)修改功能未实现
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">停止</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">运行</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $('#amendDiaglog').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var tableRow = button.parent().parent();
+        var indexName = "";
+        var strategyStatus = "";
+
+        //if button inside of table
+        if(tableRow!=null && tableRow.get()[0].tagName.toLowerCase() == "tr")
+        {
+            indexName = tableRow[0].children[0].innerText;
+            strategyStatus = tableRow[0].children[1].cloneNode(true);
+        }
+        var modal = $(this);
+
+        modal.find('#status-container').get()[0].removeChild(modal.find('#status-container').get()[0].lastChild);
+        modal.find('#status-container').get()[0].appendChild(strategyStatus);
+        modal.find('#index-name').text(indexName);
+    })
+
+    </script>
+
+{% endblock %}
+

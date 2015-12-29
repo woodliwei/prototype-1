@@ -1,12 +1,8 @@
-
 from __future__ import unicode_literals
 from django.shortcuts import render_to_response
 import json
 from .models import MyData
 from .controls import *
-
-# Create your views here.
-from django.http import HttpResponse
 
 def hello1(request, num):
     try:
@@ -27,6 +23,10 @@ def strat_trend_manage(requst):
     return render_to_response("strat_trend_manage.html", get_context("strat_trend_manage"))
 
 
+def strat_manage(requst):
+    return render_to_response("strat_manage.html", get_context("strat_manage"))
+
+
 def about_us(requst):
     return render_to_response("about_us.html", get_context("about_us"))
 
@@ -43,15 +43,14 @@ def about_us(requst):
 #         )
 #     )
 
-#dict(dict1, **dict2)
 
 # Set active items in Title Bar and Nav Bar
-# {"title_strategy": "active",
+#   "title_strategy": "active",
 #   "title_bigdata": "",
-#   "about": "",
+#   "title_aboutUs": "",
 #   "nav_trendTest": "active",
 #   "nav_historyData": "",
-#   "nav_historyTest": ""}
+#   "nav_historyTest": ""
 def get_context(pageName):
     activeDict= {
         "bigdata_trend_testing":
@@ -60,6 +59,11 @@ def get_context(pageName):
                 "nav_trendTest": "active",
                 "buy_indexes_list": SelectDropdown("buyList", "multiselect", MyData.buyindexes),
                 "sell_indexes_list": SelectDropdown("sellList", "multiselect", MyData.sellindexes),
+            },
+        "strat_manage":
+            {
+                "title_strategy": "active",
+                "nav_strategy_mge": "active",
             },
         "strat_trend_manage":
             {
