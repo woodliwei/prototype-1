@@ -31,19 +31,11 @@
             <div class="row">
                 <div class="col-md-3" >
                     <h4><span class="label label-success">买入</span></h4>
-                    <select class="multiselect" id="buyList" >
-                        <option >五日上穿十日</option>
-                        <option >五日上穿二十日</option>
-                        <option >五日上穿三十日</option>
-                    </select>
+                    {{ buy_indexes_list|safe  }}
                 </div>
                 <div class="col-md-3" >
                     <h4><span class="label label-danger">卖出</span></h4>
-                    <select class="multiselect" id="sellList">
-                        <option >五日下穿十日</option>
-                        <option >五日下穿二十日</option>
-                        <option >五日下穿三十日</option>
-                    </select>
+                    {{ sell_indexes_list|safe  }}
                 </div>
             </div>
             <br><br>

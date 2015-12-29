@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class Mysite(models.Model):
     title = models.CharField(max_length=100)
@@ -8,7 +7,11 @@ class Mysite(models.Model):
     author = models.CharField(max_length=100)
     num = models.IntegerField(max_length=10)
 
+
 class MyData:
+    buyindexes = ["五日上穿十日", "五日上穿二十日", "五日上穿三十日"]
+    sellindexes = ["五日下穿十日", "五日下穿二十日", "五日下穿三十日"]
+
     dateList = [
         "2013/1/24", "2013/1/25", "2013/1/28", "2013/1/29", "2013/1/30",
         "2013/1/31", "2013/2/1", "2013/2/4", "2013/2/5", "2013/2/6",

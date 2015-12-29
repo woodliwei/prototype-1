@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render_to_response
 import json
 from .models import MyData
+from .controls import *
 
 # Create your views here.
 from django.http import HttpResponse
@@ -57,8 +58,9 @@ def get_context(pageName):
             {
                 "title_bigdata": "active",
                 "nav_trendTest": "active",
+                "buy_indexes_list": SelectDropdown("buyList", "multiselect", MyData.buyindexes),
+                "sell_indexes_list": SelectDropdown("sellList", "multiselect", MyData.sellindexes),
             },
-
         "strat_trend_manage":
             {
                 "title_strategy": "active",
