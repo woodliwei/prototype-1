@@ -27,7 +27,7 @@
                     五日上穿十日</td>
                 <td>
                     <p class="formular">
-                        (prev  mavg5_close) < prev mavg10_close, mavg5_close > next mavg10_close
+                        (prev  mavg5_close) < prev mavg10_close, mavg5 > mavg10
                     </p>
                 </td>
                 <td>
@@ -39,7 +39,7 @@
                     五日上穿二十日</td>
                 <td>
                     <p class="formular">
-                        (prev  mavg5_close) < prev mavg20_close, mavg5_close > next mavg20_close
+                        (prev  mavg5_close) < prev mavg20_close, mavg5 > mavg20
                     </p>
                 </td>
                 <td >
@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <p class="formular">
-                        (prev  mavg5_close) < prev mavg30_close, mavg5_close > next mavg30_close
+                        (prev  mavg5_close) < prev mavg30_close, mavg5 > mavg30
                     </p>
                 </td>
                 <td >
@@ -165,7 +165,7 @@
             indexName = tableRow[0].children[0].innerText;
             indexFun = tableRow[0].children[1].innerText;
         }
-        //var recipient = button.data('whatever') // Extract info from data-* attributes
+        //sample code of using data. var recipient = button.data('whatever') // Extract info from data-* attributes
         var modal = $(this);
         modal.find('#index-formula').text(indexFun);
         modal.find('#index-name').val(indexName);

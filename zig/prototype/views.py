@@ -20,7 +20,7 @@ def bigdata_trend_test_result(request):
 
 
 def strat_trend_manage(requst):
-    return render_to_response("strat_trend_manage.html", get_context("strat_trend_manage"))
+    return render_to_response("strat_manage_index.html", get_context("strat_manage_index"))
 
 
 def strat_manage(requst):
@@ -65,7 +65,7 @@ def get_context(pageName):
                 "title_strategy": "active",
                 "nav_strategy_mge": "active",
             },
-        "strat_trend_manage":
+        "strat_manage_index":
             {
                 "title_strategy": "active",
                 "nav_index_manage": "active",
