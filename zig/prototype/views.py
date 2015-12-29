@@ -26,6 +26,9 @@ def strat_trend_manage(requst):
     return render_to_response("strat_trend_manage.html", get_context("strat_trend_manage"))
 
 
+def about_us(requst):
+    return render_to_response("about_us.html", get_context("about_us"))
+
 # def defaultViews(request):
 #     return render_to_response(
 #         'group.html',
@@ -43,7 +46,7 @@ def strat_trend_manage(requst):
 
 # Set active items in Title Bar and Nav Bar
 # {"title_strategy": "active",
-#   "title_bigData": "",
+#   "title_bigdata": "",
 #   "about": "",
 #   "nav_trendTest": "active",
 #   "nav_historyData": "",
@@ -52,7 +55,7 @@ def get_context(pageName):
     activeDict= {
         "bigdata_trend_testing":
             {
-                "title_bigData": "active",
+                "title_bigdata": "active",
                 "nav_trendTest": "active",
             },
 
@@ -63,11 +66,16 @@ def get_context(pageName):
             },
         "bigdata_trend_test_result":
             {
-                "title_bigData": "active",
-                "nav_historyTest":"active",
+                "title_bigdata": "active",
+                "nav_historyTest": "active",
                 "SHIndexName": json.dumps("上证指数"),
                 "dateList": json.dumps(MyData.dateList),
                 "marketData": json.dumps(MyData.marketData),
             },
+        "about_us":
+            {
+                "title_aboutUs": "active",
+                "no_navBar": True,
+            }
     }
     return activeDict[pageName]
