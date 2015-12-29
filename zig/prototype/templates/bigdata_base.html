@@ -5,9 +5,9 @@
 {#<br/>#}
 {#    <br/>#}
     <div class="list-group" >
-        <a href="#" class="list-group-item {{ nav_trendTest }}">趋势指标回测</a>
+        <a href="{% url 'prototype:bigdata' %}" class="list-group-item {{ nav_trendTest }}">趋势指标回测</a>
         <a href="#" class="list-group-item {{ nav_historyData }}">历史数据查询</a>
-        <a href="#" class="list-group-item {{ nav_historyTest }}">历史回测</a>
+        <a href="{% url 'prototype:bigdata_result' %}" class="list-group-item {{ nav_historyTest }}">回测结果</a>
     </div>
 {% endblock %}
 

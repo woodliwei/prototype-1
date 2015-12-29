@@ -1,11 +1,11 @@
 
 Template Hierarchy
 
-zigBase
+base.html
 |
 ---------------------------
 |                         |
-zigBigDataBase            zigStratBase
+bigdata_base.html       strat_base.html
 |                         |
-zigBigDataMain            zigStratMain
+bigdata_*.html          strat_*.html
 
