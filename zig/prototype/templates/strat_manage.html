@@ -1,4 +1,5 @@
 {% extends "strat_base.html" %}
+{% load staticfiles %}
 
 {% block content %}
     <div class="panel panel-default">
@@ -21,9 +22,7 @@
                 <td>
                     均线策略1</td>
                 <td>
-                    <p class="formular">
                         <span class="label label-success">运行</span>
-                    </p>
                 </td>
                 <td>1,356,000</td>
                 <td>
@@ -34,9 +33,7 @@
                 <td  >
                     均线策略2</td>
                 <td>
-                    <p class="formular">
                         <span class="label label-primary">NEW</span>
-                    </p>
                 </td>
                 <td>100,000</td>
                 <td >
@@ -48,9 +45,7 @@
                     自定义策略
                 </td>
                 <td>
-                    <p class="formular">
                         <span class="label label-danger">停止</span>
-                    </p>
                 </td>
                 <td>856,000</td>
                 <td >
@@ -75,28 +70,39 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group" id="status-container">
+                        <div id="status-container">
                             <label class="control-label">状态:</label>
-
                         </div>
 
-                        <div class="form-group">
+                        <div >
                             <label class="control-label">策略:</label>
                             <div >
                                 <div class="panel panel-default">
                                     <!-- List group -->
                                     <ul class="list-group">
-                                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿五十日</span></li>
-                                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿五十日</span></li>
+                                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿十日</span></li>
+                                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿十日</span></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div >
                             <label class="control-label">交易记录</label>
-                            <div class="tradingAction">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                详细信息
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="tradingAction">
+                                                <img src="{% static 'img/diagram.png' %}" />
 {#               *************    Data Table   **************** #}
-                                <table class="table table-bordered table-hover table-condensed">
+                                                <table class="table table-bordered table-hover table-condensed">
 <thead><tr><th title="Field #1">datetime</th>
 <th title="Field #2">action</th>
 <th title="Field #3">price</th>
@@ -1508,7 +1514,14 @@
 <td align="right">10000.000000</td>
 </tr>
 </tbody></table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
                         </div>
                     </form>
                 </div>
@@ -1520,6 +1533,9 @@
             </div>
         </div>
     </div>
+
+
+
 
     <script>
     $('#amendDiaglog').on('show.bs.modal', function (event) {
