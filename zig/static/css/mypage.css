@@ -6,7 +6,7 @@ body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Micro
     padding: 3px 30px;
 }
 
-.formular
+.formula
 {
     width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
 }
@@ -44,118 +44,4 @@ body {
 .tradingAction{
     max-height: 250px;
     overflow-y:scroll;
-}
-
-/* following may not needed. */
-
-@media (min-width: 992px) {
-    /* 992px */
-    /* Page content */
-    .page-content-wrapper {
-        float: left;
-        width: 100%;
-        background: #f8f8f8;
-    }
-
-        .page-content-wrapper .page-content {
-            margin-left: 220px;
-            margin-top: 0px;
-            padding: 10px 0 0 20px;
-        }
-
-            .page-content-wrapper .page-content.no-min-height {
-                min-height: auto;
-            }
-
-    .page-sidebar-fixed.page-sidebar-hover-on .page-content-wrapper .page-content {
-        margin-left: 54px;
-    }
-
-    .page-sidebar-reversed .page-content-wrapper .page-content {
-        margin-left: 0 !important;
-        margin-right: 235px !important;
-        padding-left: 0;
-        padding-right: 20px;
-    }
-
-    .page-sidebar-reversed.page-sidebar-fixed.page-sidebar-hover-on .page-content-wrapper .page-content {
-        margin-left: 0;
-        margin-right: 54px;
-    }
-
-    .page-sidebar-reversed.page-sidebar-closed .page-content-wrapper .page-content {
-        margin-left: 0 !important;
-        margin-right: 54px !important;
-    }
-
-    .page-sidebar-closed .page-content-wrapper .page-content {
-        margin-left: 54px !important;
-    }
-
-    .page-sidebar-closed.page-sidebar-hide .page-content-wrapper .page-content {
-        margin-left: 0 !important;
-    }
-
-    .page-sidebar-closed.page-sidebar-reversed.page-sidebar-hide .page-content-wrapper .page-content {
-        margin-right: 0 !important;
-    }
-
-    .page-full-width .page-content-wrapper .page-content {
-        margin-left: 0px !important;
-    }
-}
-
-@media (max-width: 991px) {
-    /* 991px */
-    /* Boxed page container  */
-    .page-boxed > .container {
-        width: 100%;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Page content */
-    .page-content-wrapper1 .page-content {
-        margin: 0px !important;
-        padding: 20px !important;
-        min-height: 280px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    /*  768px & 991px */
-    /* Boxed page container */
-    .page-boxed > .container {
-        margin: auto !important;
-    }
-}
-
-@media (max-width: 767px) {
-    /* 767px */
-    /* Page content */
-    .page-content-wrapper .page-content {
-        padding: 20px 10px 10px 10px !important;
-        overflow: hidden;
-        /* Page title */
-    }
-
-        .page-content-wrapper .page-content .page-title {
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-            .page-content-wrapper .page-content .page-title small {
-                font-size: 13px;
-                padding-top: 3px;
-            }
-}
-
-@media (max-width: 480px) {
-    /* 480px */
-    /* Dashboard date range panel */
-    .page-content-wrapper .page-content .page-title small {
-        display: block;
-        clear: both;
-    }
 }
