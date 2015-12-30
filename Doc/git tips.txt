@@ -1,0 +1,6 @@
+常用命令
+git clone <url>
+git add (checkout)
+git diff --cached  (diff)
+git commit (commit to local repository)
+git push (commit to server)
