@@ -32,6 +32,10 @@ def strat_manage(requst):
 def about_us(requst):
     return render_to_response("about_us.html", get_context("about_us"))
 
+
+def under_construction(requst):
+    return render_to_response("under_construction.html", get_context("under_construction"))
+
 # def defaultViews(request):
 #     return render_to_response(
 #         'group.html',
@@ -83,6 +87,10 @@ def get_context(pageName):
         "about_us":
             {
                 "title_aboutUs": "active",
+                "no_navBar": True,
+            },
+        "under_construction":
+            {
                 "no_navBar": True,
             }
     }

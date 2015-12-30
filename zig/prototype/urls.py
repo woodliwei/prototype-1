@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^bigdata_result/$', views.bigdata_trend_test_result, name='bigdata_result'),
     url(r'^aboutus/$', views.about_us, name='aboutus'),
     url(r'^$', views.strat_trend_manage),
+    url(r'^.+/$', views.under_construction),
 ]
 
