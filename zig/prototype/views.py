@@ -21,6 +21,10 @@ def bigdata_trend_test_result(request):
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
 
+def bigdata_history(request):
+    return render_to_response('bigdata_history.html', get_context("bigdata_history"))
+
+
 def strat_trend_manage(requst):
     return render_to_response("strat_manage_index.html", get_context("strat_manage_index"))
 
@@ -36,18 +40,7 @@ def about_us(requst):
 def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
-# def defaultViews(request):
-#     return render_to_response(
-#         'group.html',
-#         dict(
-#             {
-#                 "SHIndexName": json.dumps("上证指数"),
-#                 "dateList": json.dumps(MyData.dateList),
-#                 "marketData": json.dumps(MyData.marketData)
-#             },
-#
-#         )
-#     )
+
 
 
 # Set active items in Title Bar and Nav Bar
@@ -59,6 +52,14 @@ def under_construction(requst):
 #   "nav_historyTest": ""
 def get_context(pageName):
     activeDict= {
+        "bigdata_history":
+            {
+                "title_bigdata": "active",
+                "nav_historyData": "active",
+                "SHIndexName": json.dumps("上证指数"),
+                "dateList": json.dumps(MyData.dateList),
+                "marketData": json.dumps(MyData.marketData),
+            },
         "bigdata_trend_testing":
             {
                 "title_bigdata": "active",
@@ -66,23 +67,22 @@ def get_context(pageName):
                 "buy_indexes_list": SelectDropdown("buyList", "multiselect", MyData.buyindexes),
                 "sell_indexes_list": SelectDropdown("sellList", "multiselect", MyData.sellindexes),
             },
+            "bigdata_trend_test_result":
+            {
+                "title_bigdata": "active",
+                "nav_historyTest": "active",
+            },
         "strat_manage":
             {
                 "title_strategy": "active",
                 "nav_strategy_mge": "active",
+                "buy_indexes_list": SelectDropdown("buyList", "multiselect", MyData.buyindexes),
+                "sell_indexes_list": SelectDropdown("sellList", "multiselect", MyData.sellindexes),
             },
         "strat_manage_index":
             {
                 "title_strategy": "active",
                 "nav_index_manage": "active",
-            },
-        "bigdata_trend_test_result":
-            {
-                "title_bigdata": "active",
-                "nav_historyTest": "active",
-                "SHIndexName": json.dumps("上证指数"),
-                "dateList": json.dumps(MyData.dateList),
-                "marketData": json.dumps(MyData.marketData),
             },
         "about_us":
             {
