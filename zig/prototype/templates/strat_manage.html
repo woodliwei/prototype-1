@@ -1,4 +1,5 @@
 {% extends "strat_base.html" %}
+{% load staticfiles %}
 
 {% block content %}
     <div class="panel panel-default">
@@ -21,26 +22,22 @@
                 <td>
                     均线策略1</td>
                 <td>
-                    <p class="formular">
                         <span class="label label-success">运行</span>
-                    </p>
                 </td>
                 <td>1,356,000</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDiaglog" data-whatever="@mdo">...</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDialog" data-whatever="@mdo">...</button>
                 </td>
             </tr>
             <tr>
                 <td  >
                     均线策略2</td>
                 <td>
-                    <p class="formular">
                         <span class="label label-primary">NEW</span>
-                    </p>
                 </td>
                 <td>100,000</td>
                 <td >
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDiaglog" data-whatever="@mdo">...</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDialog" data-whatever="@mdo">...</button>
                 </td>
             </tr>
             <tr>
@@ -48,25 +45,24 @@
                     自定义策略
                 </td>
                 <td>
-                    <p class="formular">
                         <span class="label label-danger">停止</span>
-                    </p>
                 </td>
                 <td>856,000</td>
                 <td >
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDiaglog" data-whatever="@mdo">...</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#amendDialog" data-whatever="@mdo">...</button>
                 </td>
             </tr>
             </tbody>
         </table>
         <br>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#amendDiaglog" >添加策略</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newDialog" >添加策略</button>
         <br>
         <br>
         <br>
     </div>
 
-    <div class="modal fade" id="amendDiaglog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+{#    ************      amend dialog    ***************#}
+    <div class="modal fade" id="amendDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -75,28 +71,44 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group" id="status-container">
+                        <div id="status-container">
                             <label class="control-label">状态:</label>
-
                         </div>
-
-                        <div class="form-group">
+                        <div >
+                            <label class="control-label">目标股票</label>
+                            <ul class="list-inline">
+                                <li >北大荒</li>
+                            </ul>
+                        </div>
+                        <div >
                             <label class="control-label">策略:</label>
                             <div >
                                 <div class="panel panel-default">
                                     <!-- List group -->
                                     <ul class="list-group">
-                                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿五十日</span></li>
-                                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿五十日</span></li>
+                                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿十日</span></li>
+                                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿十日</span></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div >
                             <label class="control-label">交易记录</label>
-                            <div class="tradingAction">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                详细信息 <span class="caret"></span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="tradingAction">
+                                                <img src="{% static 'img/diagram.png' %}" />
 {#               *************    Data Table   **************** #}
-                                <table class="table table-bordered table-hover table-condensed">
+                                                <table class="table table-bordered table-hover table-condensed">
 <thead><tr><th title="Field #1">datetime</th>
 <th title="Field #2">action</th>
 <th title="Field #3">price</th>
@@ -1508,6 +1520,11 @@
 <td align="right">10000.000000</td>
 </tr>
 </tbody></table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -1521,25 +1538,97 @@
         </div>
     </div>
 
+
+{#  *****************   new dialog     *********** #}
+
+     <div class="modal fade" id="newDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="index-name">新建策略:</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div id="status-container">
+                            <label class="control-label" for="strat-name">策略名称:</label>
+                            <input type="text" class="form-control" id="strat-name">
+                        </div>
+                        <div id="status-container">
+                            <label class="control-label" for="start-cash">起始资金:</label>
+                            <input type="text" class="form-control" id="start-cash">
+                        </div>
+                        <div >
+                            <label class="control-label">目标股票</label><br />
+            <select class="multiselect" multiple="multiple">
+                <option value="北大荒">北大荒</option>
+                <option value="罗牛山">罗牛山</option>
+                <option value="方向德农">方向德农</option>
+                <option value="农发种业">农发种业</option>
+                <option value="万福生科">万福生科</option>
+                <option value="通威股份">通威股份</option>
+                <option value="敦煌种业">敦煌种业</option>
+                <option value="金新农">金新农</option>
+                <option value="亚盛集团">亚盛集团</option>
+                <option value="新农开发">新农开发</option>
+                <option value="新赛股份">新赛股份</option>
+                <option value="金健米业">金健米业</option>
+                <option value="龙大肉食">龙大肉食</option>
+                <option value="星河生物">星河生物</option>
+                <option value="隆平高科">隆平高科</option>
+                <option value="千足珍珠">千足珍珠</option>
+            </select>
+                        </div>
+                        <div >
+                            <label class="control-label">策略:</label>
+                            <div class="row">
+                <div class="col-md-3" >
+                    <h4><span class="label label-success">买入策略</span></h4>
+                    {{ buy_indexes_list|safe  }}
+                </div>
+                <div class="col-md-3" >
+                    <h4><span class="label label-danger">卖出策略</span></h4>
+                    {{ sell_indexes_list|safe  }}
+                </div>
+            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    (demo only)功能未实现
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">创建</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-    $('#amendDiaglog').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var tableRow = button.parent().parent();
-        var indexName = "";
-        var strategyStatus = "";
 
-        //if button inside of table
-        if(tableRow!=null && tableRow.get()[0].tagName.toLowerCase() == "tr")
-        {
-            indexName = tableRow[0].children[0].innerText;
-            strategyStatus = tableRow[0].children[1].cloneNode(true);
-        }
-        var modal = $(this);
+            //Init function
+            $(document).ready(function() {
+                $('.multiselect').multiselect(
+                        {numberDisplayed: 10,maxHeight: 300}
+                );
+            });
 
-        modal.find('#status-container').get()[0].removeChild(modal.find('#status-container').get()[0].lastChild);
-        modal.find('#status-container').get()[0].appendChild(strategyStatus);
-        modal.find('#index-name').text(indexName);
-    })
+            $('#amendDialog').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var tableRow = button.parent().parent();
+                var indexName = "";
+                var strategyStatus = "";
+
+                //if button inside of table
+                if(tableRow!=null && tableRow.get()[0].tagName.toLowerCase() == "tr")
+                {
+                    indexName = tableRow[0].children[0].innerText;
+                    strategyStatus = tableRow[0].children[1].cloneNode(true);
+                }
+                var modal = $(this);
+
+                modal.find('#status-container').get()[0].removeChild(modal.find('#status-container').get()[0].lastChild);
+                modal.find('#status-container').get()[0].appendChild(strategyStatus);
+                modal.find('#index-name').text(indexName);
+            })
 
     </script>
 
