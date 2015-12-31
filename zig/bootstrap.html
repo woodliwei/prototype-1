@@ -15,6 +15,61 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="static/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.format = function (source, params) {
+                if (arguments.length == 1)
+                    return function () {
+                        var args = $.makeArray(arguments);
+                        args.unshift(source);
+                        return $.format.apply(this, args);
+                    };
+                if (arguments.length > 2 && params.constructor != Array) {
+                    params = $.makeArray(arguments).slice(1);
+                }
+                if (params.constructor != Array) {
+                    params = [params];
+                }
+                $.each(params, function (i, n) {
+                    source = source.replace(new RegExp("\\{" + i + "\\}", "g"), n);
+                });
+                return source;
+            };
+
+            $("#addRegressionBtn").click(function () {
+                var rowTemplage = "<div class=\"row\" id=\"{0}\">{1}</div>";
+                var itemTemplate = "<div class=\"col-md-3\"><div class=\"panel panel-default\"><!-- Default panel contents --><div class=\"panel-heading\">{0}</div><!-- List group --><ul class=\"list-group\"><li class=\"list-group-item\"><span class=\"label label-success\">买入</span>{1}</li><li class=\"list-group-item\"><span class=\"label label-danger\">卖出</span>{2}</li></ul></div></div>";
+                var lastRow = null;
+                var rowCount = $("#row0").length > 0 ? $("#row0").nextAll().length + 1 : 0;
+
+                var buyItemValue = $("#buySelect option:selected").text();
+                var sellItemValue = $("#sellSelect option:selected").text();
+
+                if (rowCount > 0) {
+                    lastRow = rowCount > 1 ? $("#row0").nextAll().last() : $("#row0");
+                }
+
+                var lastRowItemCount = lastRow != null ? lastRow.children(".col-md-3").length : 0;
+                var regressionItemCount = 0;
+
+                if (lastRowItemCount == 0 || lastRowItemCount >= 4) {
+                    var rowID = "row" + rowCount.toString();
+                    regressionItemCount = rowCount * 4 + 1;
+                    var newRow = $.format(rowTemplage, rowID, $.format(itemTemplate, "回测" + regressionItemCount.toString(), buyItemValue, sellItemValue));
+                    $("#regressionList").append(newRow);
+                } else {
+                    regressionItemCount = rowCount * 4 + lastRowItemCount - 3;
+                    lastRow.append($.format(itemTemplate, "回测" + regressionItemCount.toString(), buyItemValue, sellItemValue));
+                }
+                $("#regressionItemCount").text(regressionItemCount.toString());
+            });
+        });
+        function fun_addStrat(){
+            var buySelectedItem = document.getElementById("buySelect").value;
+            var sellSelectedItem = document.getElementById("sellSelect").value;
+        }
+    </script>
 </head>
 <body>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -110,7 +165,7 @@
         <div class="row">
             <div class="col-md-3" >
                 <h4><span class="label label-success">买入</span></h4>
-                <select class="multiselect" >
+                <select class="multiselect" id="buySelect">
                     <option >五日上穿十日</option>
                     <option >五日上穿二十日</option>
                     <option >五日上穿三十日</option>
@@ -118,7 +173,7 @@
             </div>
             <div class="col-md-3" >
                 <h4><span class="label label-danger">卖出</span></h4>
-                <select class="multiselect" >
+                <select class="multiselect" id="sellSelect">
                     <option >五日下穿十日</option>
                     <option >五日下穿二十日</option>
                     <option >五日下穿三十日</option>
@@ -126,55 +181,14 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">添加回测<span style="padding-left: 5px;" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+        <button class="btn btn-primary" id="addRegressionBtn">添加回测<span style="padding-left: 5px;" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
         <br>
         <br>
         <div class="panel panel-default" style="width: 95%">
-            <div class="panel-heading">回测项目<span class="badge">3</span>：</div>
-            <div class="panel-body">
-
-                <div class="row">
-
-                    <div class="col-md-3">
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
-                            <div class="panel-heading">回测1</div>
-                            <!-- List group -->
-                            <ul class="list-group">
-                                <li class="list-group-item"><span class="label label-success">买入</span>五日上穿十日</li>
-                                <li class="list-group-item"><span class="label label-danger">卖出</span>五日下穿十日</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
-                            <div class="panel-heading">回测2</div>
-
-                            <!-- List group -->
-                            <ul class="list-group">
-                                <li class="list-group-item"><span class="label label-success">买入</span>五日上穿二十日</li>
-                                <li class="list-group-item"><span class="label label-danger">卖出</span>五日下穿二十日</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
-                            <div class="panel-heading">回测3</div>
-
-                            <!-- List group -->
-                            <ul class="list-group">
-                                <li class="list-group-item"><span class="label label-success">买入</span>五日上穿五十日</li>
-                                <li class="list-group-item"><span class="label label-danger">卖出</span>五日下穿五十日</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="panel-heading">回测项目<span class="badge" id="regressionItemCount">0</span>：</div>
+            <div class="panel-body" id="regressionList">
 
 
-                </div>
             </div>
         </div>
 
