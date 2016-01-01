@@ -1,0 +1,273 @@
+{% extends "strat_base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <script type="text/javascript">
+        var dataUrlBase = "{% static 'data/' %}";
+        function queryData() {
+
+            var ajaxUrl = getQueryString('id');
+            var dataUrl = 'sData01.html';
+            switch (ajaxUrl) {
+                case '01':
+                    dataUrl = 'sData01.html';
+                    break;
+                case '02':
+                    dataUrl = 'sData02.html';
+                    break;
+                case '03':
+                    dataUrl = 'sData03.html';
+                    break;
+                case '04':
+                    dataUrl = 'sData04.html';
+                    break;
+            }
+
+            $.ajax({
+                url: dataUrlBase + dataUrl,  //切换真实数据的时候，这里写ajax请求的json数据，放开下面的dataType注释
+                type: 'get',
+                //dataType:'json',
+                success: function (dts) {
+                    dts = eval('(' + dts + ')');    //当请求类型为json类型时，这句代码可注释
+
+                    chartOptions.series[0].name = dts[0].name;
+                    chartOptions.series[0].data = dts[0].vals;
+                    chartOptions.xAxis[0].categories = dts[0].categories;
+                    chart = new Highcharts.Chart(chartOptions);
+
+                }
+            });
+
+        }
+    </script>
+    <script src="{% static 'js/highcharts/js/highcharts.js' %}"></script>
+    <script src="{% static 'js/strategyCharts.js' %}" ></script>
+
+    <link rel="stylesheet" href="{% static 'css/maodong.css' %}" />
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>策略<small>策略商店</small></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="strategy_box_top_left">
+                    <div class="strategy_box_top_left_content ">
+                        <div id="mainContainer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5" style="margin-left:30px; ">
+                <div class="strategy_box_top_right_content">
+
+                    <ul class="strategy_box_top_right_content_title">
+                        <li class="strategy_box_top_right_content_title_left">策略名称</li>
+                        <li class="strategy_box_top_right_content_title_data">策略1</li>
+                    </ul>
+
+                    <div style="clear: both;"></div>
+                    <table class="strategy_box_top_right_content_table" cellspacing="0" cellpadding="0">
+                        <tbody><tr>
+                            <td class="strategy_box_top_right_content_table_left">七日年化收益率</td>
+                            <td class="strategy_box_top_right_content_table_right">6.888<span>%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="strategy_box_top_right_content_table_left">过去一年净值增长率</td>
+                            <td class="strategy_box_top_right_content_table_right">68.88<span>%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="strategy_box_top_right_content_table_left">价格</td>
+                            <td class="strategy_box_top_right_content_table_right_month">100/月</td>
+                        </tr>
+                        <tr>
+                            <td class="strategy_box_top_right_content_table_button" colspan="2"><a href="#">立即购买</a></td>
+                        </tr>
+                        </tbody></table>
+                    <ul class="strategy_box_top_right_content_bottom">
+                        <li class="strategy_box_top_right_content_bottom_left">策略类型:自动交易策略</li>
+                        <li class="strategy_box_top_right_content_bottom_right"><a href="#">收藏</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="panel panel-default">
+
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">策略介绍</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">作者简介</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">公告</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" style="margin: 10px; height: 100px;">
+                <div role="tabpanel" class="tab-pane active" id="home">由上市公司，或者第三方提供的股票基本数据，在量化交易系统中，主要会用到权益数据(分红送股)、财务数据、股本数据、板块数据等。</div>
+                <div role="tabpanel" class="tab-pane" id="profile">作者简介...作者简介...作者简介...</div>
+                <div role="tabpanel" class="tab-pane" id="messages">1.0 版 实测表现优秀,欢迎使用</div>
+            </div>
+
+        </div>
+
+        <div class="strategy_ranking">
+            <div class="strategy_tabs_content strategy_ranking_height">
+                <p class="strategy_ranking_title">策略排行</p>
+                <div class="strategy_ranking_content">
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="topSName01">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="topVal01">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="topCategory" id="topContainer01">
+
+                            </div>
+                            <!--<img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="topSName02">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="topVal02">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="topCategory" id="topContainer02">
+
+                            </div>
+                            <!--<img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="topSName03">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="topVal03">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="topCategory" id="topContainer03">
+
+                            </div>
+                            <!--<img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                    <div class="strategy_ranking_chart strategy_ranking_chart_last">
+                        <p class="strategy_ranking_chart_title" id="topSName04">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="topVal04">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="topCategory" id="topContainer04">
+
+                            </div>
+                            <!--<img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="strategy_ranking">
+            <div class="strategy_tabs_content strategy_ranking_height">
+                <p class="strategy_ranking_title">最新策略</p>
+                <div class="strategy_ranking_content">
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="latestSName01">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="latestVal01">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="latestCategory" id="latestContainer01">
+
+                            </div>
+                            <!--<img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="latestSName02">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="latestVal02">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="latestCategory" id="latestContainer02">
+
+                            </div>
+                            <!-- <img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="latestSName03">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="latestVal03">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="latestCategory" id="latestContainer03">
+
+                            </div>
+                            <!-- <img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                    <div class="strategy_ranking_chart strategy_ranking_chart_last">
+                        <p class="strategy_ranking_chart_title" id="latestSName04">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="latestVal04">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="latestCategory" id="latestContainer04">
+
+                            </div>
+                            <!--<img src="assets/imgs/strategy_img2.jpg" width="191" height="172">-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+        function queryData() {
+
+            var ajaxUrl = getQueryString('id');
+            var dataUrl = 'sData01.html';
+            switch (ajaxUrl) {
+                case '01':
+                    dataUrl = 'sData01.html';
+                    break;
+                case '02':
+                    dataUrl = 'sData02.html';
+                    break;
+                case '03':
+                    dataUrl = 'sData03.html';
+                    break;
+                case '04':
+                    dataUrl = 'sData04.html';
+                    break;
+            }
+
+            $.ajax({
+                url: '{% static "data/" %}' + dataUrl,  //切换真实数据的时候，这里写ajax请求的json数据，放开下面的dataType注释
+                type: 'get',
+                //dataType:'json',
+                success: function (dts) {
+                    dts = eval('(' + dts + ')');    //当请求类型为json类型时，这句代码可注释
+
+                    chartOptions.series[0].name = dts[0].name;
+                    chartOptions.series[0].data = dts[0].vals;
+                    chartOptions.xAxis[0].categories = dts[0].categories;
+                    chart = new Highcharts.Chart(chartOptions);
+
+                }
+            });
+
+        }
+
+        {#        $(function () {#}
+        {#            $('.strategy_tabs_content_title li').first().children('.strategy_tabs_content_title_children').show();#}
+        {#            $('.strategy_tabs_content_title li').click(function () {#}
+        {#                $(this).addClass('current').children('.strategy_tabs_content_title_children').show();#}
+        {#                $(this).siblings().removeClass('current').children('.strategy_tabs_content_title_children').hide();#}
+        {#            });#}
+        {#        })#}
+
+
+    </script>
+
+{% endblock %}
+

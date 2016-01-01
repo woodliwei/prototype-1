@@ -33,6 +33,10 @@ def strat_manage(requst):
     return render_to_response("strat_manage.html", get_context("strat_manage"))
 
 
+def strat_shop(requst):
+    return render_to_response("strat_shop.html", get_context("strat_shop"))
+
+
 def about_us(requst):
     return render_to_response("about_us.html", get_context("about_us"))
 
@@ -83,6 +87,11 @@ def get_context(pageName):
             {
                 "title_strategy": "active",
                 "nav_index_manage": "active",
+            },
+        "strat_shop":
+            {
+                  "title_strategy": "active",
+                "nav_strat_shop": "active",
             },
         "about_us":
             {

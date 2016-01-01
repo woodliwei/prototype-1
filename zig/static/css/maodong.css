@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+/* Reset CSS
+ * --------------------------------------- */
+
+/*strategy*/
+/*.strategy_box_top{width:950px; height:360px; overflow:hidden;}*/
+.strategy_box_top_left{ height:329px; float:left; padding:4px; background:#fff; overflow:hidden;}
+.strategy_box_top_left_content{height:329px; box-shadow:0 0 4px #dfdfdf; }
+.strategy_box_top_left_content #mainContainer{width:500px;height:319px;}
+.strategy_box_top_right{height:329px; padding:4px; background:#fff; overflow:hidden;}
+.strategy_box_top_right_content{height:329px; box-shadow:0 0 4px #dfdfdf;}
+.strategy_box_top_right_content_title{color:#b51120; font-size:20px; font-weight:bold; background:url(../img/strategy_top_bg.jpg) repeat-x; padding:0 12px; height:38px; line-height:38px;}
+.strategy_box_top_right_content_title_left{float:left;}
+.strategy_box_top_right_content_title_data{float:right; color:#000; font-size:14px; font-weight:normal;}
+.strategy_box_top_right_content_table{padding:0 12px;}
+.strategy_box_top_right_content_table tr{height:58px;}
+/*.strategy_box_top_right_content_table_left{width:210px; font-size:15px; color:#000;}*/
+.strategy_box_top_right_content_table_right{font-size:36px; color:#b51120;}
+.strategy_box_top_right_content_table_right span{font-size:24px;}
+.strategy_box_top_right_content_table_right_month{font-size:18px; color:#b51120;}
+.strategy_box_top_right_content_table_button{text-align:center;}
+.strategy_box_top_right_content_table_button a{display:inline-block; width:110px; height:45px; background:#b51120; color:#e9d9a9; font-size:20px; font-weight:bold; line-height:45px; border-radius:6px;}
+.strategy_box_top_right_content_bottom{margin:15px auto 0; height:36px; line-height:36px; border-top:1px solid #C6C6C6; font-size:15px; color:#000;}
+.strategy_box_top_right_content_bottom_left{float:left;}
+.strategy_box_top_right_content_bottom_right{float:right;}
+.strategy_box_top_right_content_bottom_right a{background:url(../img/heart.png) left center no-repeat; padding-left:20px; color:#000; font-size:15px;}
+.strategy_tabs,.strategy_ranking{ overflow:hidden; padding:4px; margin-bottom:26px;}
+.strategy_tabs_content{ box-shadow:0 0 4px #dfdfdf;}
+.strategy_tabs_content_title{height:38px; background:url(../img/strategy_top_bg.jpg) repeat-x; font-size:18px; color:#000; line-height:38px; position:relative;}
+.strategy_tabs_content_title li{float:left; width:120px; text-align:center; cursor:pointer;}
+.strategy_tabs_content_title .current{background:#fff; color:#b51120; border-left:1px solid #dedede; border-right:1px solid #dedede; width:118px;}
+.strategy_tabs_content_title_children{position:absolute; top:60px; left:20px; height:238px; display:none;}
+.strategy_tabs_content_title .strategy_tabs_content_title_children_photo{float:left; width:210px; height:238px;}
+.strategy_tabs_content_title .strategy_tabs_content_title_children_text{float:right; text-align:left; font-family:"宋体",Arial; font-size:18px; line-height:25px; color:#59493f;}
+.strategy_tabs_content_title .strategy_tabs_content_title_children_text span{display:block; font-size:24px; color:#9b000e; padding-bottom:10px;}
+.strategy_tabs_content_title .strategy_tabs_content_title_children{text-align:left; font-size:16px; color:#59493f; line-height:25px;}
+.strategy_ranking_title{height:38px; background:url(../img/strategy_top_bg.jpg) repeat-x; font-size:24px; color:#b51120; line-height:38px; padding-left:26px;}
+/*.strategy_ranking_height{height:366px;}*/
+.strategy_ranking_content{padding:20px;overflow:hidden;}
+.strategy_ranking_chart{width:205px; box-shadow:0 0 4px #dfdfdf; float:left; margin-right:20px;}
+.strategy_ranking_chart_last{margin-right:0;}
+.strategy_ranking_chart_title{width:195px; height:38px; background:url(../img/strategy_top_bg.jpg) repeat-x; font-size:18px; color:#000; line-height:38px; padding-left:10px;}
+.strategy_ranking_chart_percent{font-size:24px; color:#b51120; padding:3px 10px;}
+.strategy_ranking_chart_percent span{font-size:18px;}
+.strategy_ranking_chart_text{font-size:12px; color:#000; padding:3px 10px 6px;}
+.strategy_ranking_chart_img{width:191px; margin:0 auto; height:200px;}
+
+.topCategory,.latestCategory {
+    width:191px;
+    height:212px;
+}
+
+@media (max-width: 767px) {
+    .strategy_box_top_left_content #mainContainer {
+        width: 350px;
+        height: 319px;
+    }
+}
