@@ -55,6 +55,9 @@ var chartOptions = {
         pointFormat: '<b><span style="color:{series.color}">时间：{point.category}<span></b>' +
                             '<br/><b><span style="color:{series.color}">百分比：{point.y}%<span></b>'
     },
+    followTouchMove:{
+        enalbed:true,
+    },
     legend: {
         enabled: true,
         borderRadius: 0,
@@ -86,7 +89,6 @@ var latestOptions01 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'latestContainer01'
     },
     colors: [
@@ -167,7 +169,6 @@ var latestOptions02 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'latestContainer02'
     },
     colors: [
@@ -249,7 +250,6 @@ var latestOptions03 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'latestContainer03'
     },
     colors: [
@@ -331,7 +331,6 @@ var latestOptions04 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'latestContainer04'
     },
     colors: [
@@ -413,7 +412,6 @@ var topOptions01 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'topContainer01'
     },
     colors: [
@@ -494,7 +492,6 @@ var topOptions02 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'topContainer02'
     },
     colors: [
@@ -576,7 +573,6 @@ var topOptions03 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'topContainer03'
     },
     colors: [
@@ -658,7 +654,6 @@ var topOptions04 = {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        zoomType: 'x',
         renderTo: 'topContainer04'
     },
     colors: [

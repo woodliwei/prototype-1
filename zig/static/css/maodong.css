@@ -43,7 +43,7 @@
 .strategy_ranking_chart_percent{font-size:24px; color:#b51120; padding:3px 10px;}
 .strategy_ranking_chart_percent span{font-size:18px;}
 .strategy_ranking_chart_text{font-size:12px; color:#000; padding:3px 10px 6px;}
-.strategy_ranking_chart_img{width:191px; margin:0 auto; height:200px;}
+.strategy_ranking_chart_img{width:191px; margin:0 auto; }
 
 .topCategory,.latestCategory {
     width:191px;
