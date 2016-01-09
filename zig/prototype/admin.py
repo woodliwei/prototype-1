@@ -4,8 +4,8 @@ from django.contrib import admin
 
 from prototype.models import Mysite
 
-class AuthorAdmin(admin.ModelAdmin):
+class ShowMysite(admin.ModelAdmin):
     list_display = ('title', 'url', 'author', 'num')
     search_fields = ('title', 'author')
 
-admin.site.register(Mysite)
+admin.site.register(Mysite, ShowMysite)
