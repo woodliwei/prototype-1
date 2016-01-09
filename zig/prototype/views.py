@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render_to_response
 import json
 from .models import MyData
+from .models import Mysite
 from .controls import *
 
 def hello1(request, num):
@@ -20,6 +21,8 @@ def bigdata_trend_testing(requst):
 def bigdata_trend_test_result(request):
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
+def bigdata_trend_test_result_dynamic(request):
+    return render_to_response('bigdata_trend_test_result_dynamic.html', get_context("bigdata_trend_test_result_dynamic"))
 
 def bigdata_history(request):
     return render_to_response('bigdata_history.html', get_context("bigdata_history"))
@@ -44,6 +47,27 @@ def about_us(requst):
 def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
+def local_test(requst):
+    testDBAction()
+    return render_to_response("about_us.html", get_context("about_us"))
+
+
+def testDBAction():
+    # Add
+     s = Mysite(title='test_Title', url='http://testURL', author='guoqingc', num='0')
+     s.save()
+
+    # Search and Update
+    # s = Mysite.objects.get(title='test_Title')
+    # s.url = 'http://testURL2'
+    # s.save()
+
+    # Delete
+    # s = Mysite.objects.get(title='test_Title')
+    # s.delete()
+
+    # Delete All
+    # Mysite.objects.all().delete()
 
 
 
@@ -56,6 +80,17 @@ def under_construction(requst):
 #   "nav_historyTest": ""
 def get_context(pageName):
     activeDict= {
+        "bigdata_trend_test_result_dynamic":
+            {
+                "title_bigdata": "active",
+                "nav_historyTest": "active",
+                "StockName": json.dumps("600001.ss"),
+                "dateList": json.dumps(MyData.dateList),
+                "marketData": json.dumps(MyData.marketData),
+                "resultList": json.dumps(MyData.resultList),
+                "startDate": json.dumps(MyData.startDate),
+                "endDate": json.dumps(MyData.endDate),
+            },
         "bigdata_history":
             {
                 "title_bigdata": "active",
