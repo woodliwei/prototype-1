@@ -1,0 +1,4 @@
+this chart looks better.
+http://www.highcharts.com/demo/spline-irregular-time
+
+

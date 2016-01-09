@@ -3,4 +3,5 @@ git clone <url>
 git add (checkout)
 git diff --cached  (diff)
 git commit (commit to local repository)
-git push (commit to server)
+git push origin master (commit to server's master branch)
+git pull origin (get data from server)
