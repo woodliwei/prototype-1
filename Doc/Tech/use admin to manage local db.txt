@@ -1,0 +1,24 @@
+1. create modle in models.py 
+class Mysite(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.URLField()
+    author = models.CharField(max_length=100)
+    num = models.IntegerField(max_length=10)
+
+2. Run following command to syncdb
+   1) python manage.py makemigrations
+   2) python manage.py migrate
+
+3. Check db (strats) there is a new table prototype_mysite
+
+4. Rigster db in admin, then you can maintain table from admin page
+
+in admin.py 
+
+from prototype.models import Mysite
+
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'author', 'num')
+    search_fields = ('title', 'author')
+
+admin.site.register(Mysite)

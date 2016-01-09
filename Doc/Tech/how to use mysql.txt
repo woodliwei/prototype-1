@@ -1,0 +1,24 @@
+this is to use phyton_mysql on windows platform. Make sure the version of python and mysql are x86, because python_mysql are x86 only. Linux could be different.
+
+1. Use mysql create local db: strats
+
+2. Config database in project settings.py
+   DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'strats',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306'
+
+    }
+}
+
+3. run following command to create tables in db strats and create supper user
+
+   1). python manage.py migrate
+   2). python manage.py createsuperuser 
+
+4. check localhost:8000/admin
+

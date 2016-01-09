@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render_to_response
 import json
 from .models import MyData
+from .models import Mysite
 from .controls import *
 
 def hello1(request, num):
@@ -46,6 +47,27 @@ def about_us(requst):
 def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
+def local_test(requst):
+    testDBAction()
+    return render_to_response("about_us.html", get_context("about_us"))
+
+
+def testDBAction():
+    # Add
+     s = Mysite(title='test_Title', url='http://testURL', author='guoqingc', num='0')
+     s.save()
+
+    # Search and Update
+    # s = Mysite.objects.get(title='test_Title')
+    # s.url = 'http://testURL2'
+    # s.save()
+
+    # Delete
+    # s = Mysite.objects.get(title='test_Title')
+    # s.delete()
+
+    # Delete All
+    # Mysite.objects.all().delete()
 
 
 
