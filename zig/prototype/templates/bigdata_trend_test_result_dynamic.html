@@ -1,0 +1,269 @@
+{% extends "bigdata_base.html" %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body" id="testResult">
+            <div class="page-header">
+                <h1>量化<small>趋势指标回测结果</small></h1>
+            </div>
+
+            <div id="main" style="height: 400px;"></div>
+
+            <!-- ECharts单文件引入 -->
+            <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+            <script type="text/javascript">
+                var stockName = {{StockName|safe}};
+                var testDateList = {{dateList|safe}};
+                var testMarketData = {{marketData|safe}};
+                var resultList = {{ resultList|safe }};
+                var startDate = {{ startDate|safe }};
+                var endDate = {{ endDate|safe }};
+                // 路径配置
+                require.config({
+                    paths: {
+                        echarts: 'http://echarts.baidu.com/build/dist'
+                    }
+                });
+
+                // 使用
+                require(
+                        [
+                            'echarts',
+                            'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                            'echarts/chart/k',
+                            'echarts/chart/line'
+                        ],
+                        renderCharts
+                );
+                function renderCharts(ec) {
+                            // 基于准备好的dom，初始化echarts图表
+                            var marketChart = drawMarketData(ec);
+
+                            for (var i=0; i<resultList.length; i++){
+                                 var resultChart = drawResult(ec, i);
+                                //marketChart.connect([resultChart, ]); // marketChart control resultChart
+                            }
+
+                            setTimeout(function (){
+                                window.onresize = function () {
+                                    marketChart.resize();
+                                }
+                            },200)
+
+                        };
+
+                function drawMarketData(ec){
+                    var myChart = ec.init(document.getElementById('main'));
+                    var axisData = testDateList;
+                    var option = {
+                                title : {
+                                    text: stockName
+                                },
+                                tooltip : {
+                                    trigger: 'axis',
+                                    showDelay: 0,             // 显示延迟，添加显示延迟可以避免频繁切换，单位ms
+                                    formatter: function (params) {
+                                        var res = params[0].name;
+                                        res += '<br/>' + params[0].seriesName;
+                                        res += '<br/>  开盘 : ' + params[0].value[0] + '  最高 : ' + params[0].value[3];
+                                        res += '<br/>  收盘 : ' + params[0].value[1] + '  最低 : ' + params[0].value[2];
+                                        return res;
+                                    }
+                                },
+                                legend: {
+                                    data:[stockName,'成交金额(万)','收益(\%)', '虚拟数据']
+                                },
+                                toolbox: {
+                                    show : true,
+                                    feature : {
+                                        mark : {show: true},
+                                        dataZoom : {show: true},
+                                        magicType : {show: true, type: ['line', 'bar']},
+                                        restore : {show: true},
+                                        saveAsImage : {show: true}
+                                    }
+                                },
+                                dataZoom : {
+                                    show : false,
+                                    realtime: true,
+                                    start : 0,
+                                    end : 100
+                                },
+                                grid: {
+                                    x: 80,
+                                    y: 40,
+                                    x2:20,
+                                    y2:25
+                                },
+                                xAxis : [
+                                    {
+                                        type : 'category',
+                                        boundaryGap : true,
+                                        axisTick: {onGap:false},
+                                        splitLine: {show:false},
+                                        data : axisData
+                                    }
+                                ],
+                                yAxis : [
+                                    {
+                                        type : 'value',
+                                        scale:true,
+                                        boundaryGap: [0.05, 0.05],
+                                        splitArea : {show : true}
+                                    }
+                                ],
+                                series : [
+                                    {
+                                        name:stockName,
+                                        type:'k',
+                                        data: testMarketData,
+                                    },
+                                    {
+                                        name:'成交金额(万)',
+                                        type:'line',
+                                        symbol: 'none',
+                                        data:[]
+                                    },
+                                    {
+                                        name:'虚拟数据',
+                                        type:'bar',data:[]
+                                    }
+
+                                ]
+                            };
+                            myChart.setOption(option);
+                    return myChart;
+                };
+
+                function drawResult(ec, chartIndex){
+                    var resultPage = document.getElementById('testResult');
+                    var newChartContainer = document.createElement('div');
+                    newChartContainer.style.height = '400px';
+                    resultPage.appendChild(newChartContainer);
+
+                    //var axisData = testDateList;
+                    var option = {
+                        tooltip : {
+                            trigger: 'axis',
+                            showDelay: 0             // 显示延迟，添加显示延迟可以避免频繁切换，单位ms
+                        },
+                        legend: {
+                            y : -30,
+                            data:[stockName,'成交金额(万)','虚拟数据']
+                        },
+                        toolbox: {
+                            y : -30,
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataZoom : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        dataZoom : {
+                            show : false,
+                            realtime: true,
+                            start : 0,
+                            end : 100
+                        },
+                        grid: {
+                            x: 80,
+                            y:5,
+                            x2:20,
+                            y2:40
+                        },
+                        xAxis : [
+                            {
+                                //type : 'category',
+                                //position:'top',
+                                //boundaryGap : true,
+                                //axisLabel:{show:false},
+                                //axisTick: {onGap:false},
+                                //splitLine: {show:false},
+                                //data : axisData
+                                type : 'time',
+                                min : new Date(startDate),
+                                max : new Date(endDate)
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                scale:true,
+                                splitNumber: 3,
+                                boundaryGap: [0.05, 0.05],
+                                axisLabel: {
+                                    formatter: function (v) {
+                                        return Math.round(v/10000) + ' 万'
+                                    }
+                                },
+                                splitArea : {show : true}
+                            },
+                            {
+                                type : 'value',
+                                scale:true,
+                                splitNumber: 3,
+                                boundaryGap: [0.05, 0.05],
+                                axisLabel: {
+                                    formatter: function (v) {
+                                        return Math.round(v*100) + '\%'
+                                    }
+                                },
+                                splitArea : {show : true}
+                            }
+                        ],
+                        series : [
+                            {
+                                name: '成交金额(万)',
+                                type: 'line',
+                                symbol: 'none',
+                                data: (function(){
+                                    var data = [];
+                                    resultList[chartIndex].forEach(function(e){
+                                        var tempDate = new Date(e[0]);
+                                        data.push([tempDate, e[1]]);
+                                    });
+                                    return data;
+                                })(),
+                                markLine : {
+                                    symbol : 'none',
+                                    itemStyle : {
+                                        normal : {
+                                            color:'#1e90ff',
+                                            label : {
+                                                show:false
+                                            }
+                                        }
+                                    },
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                }
+                            },
+                            {
+                                name: '收益(%)',
+                                type: 'line',
+                                yAxisIndex: 1,
+                                data: (function(){
+                                    var data = [];
+                                    resultList[chartIndex].forEach(function(e){
+                                        var tempDate = new Date(e[0]);
+                                        data.push([tempDate, e[2]]);
+                                    });
+                                    return data;
+                                })()
+                            }
+                        ]
+                    };
+                    var myChart = ec.init(newChartContainer);
+                    myChart.setOption(option);
+                    return myChart;
+                };
+            </script>
+        </div>
+    </div>
+{% endblock %}
+
