@@ -1,0 +1,63 @@
+{% extends "bigdata_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body" id="testResult">
+            <div class="page-header">
+                <h1>量化<small>趋势指标回测结果</small></h1>
+            </div>
+
+            <div id="mainContainer" style="min-width:800px;height:400px"></div>
+            <div class="strategy_ranking">
+                <div id="resultListContainer" class="strategy_tabs_content strategy_ranking_height">
+                    <p class="strategy_ranking_title">策略排行</p>
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="topSName01">策略名称</p>
+                        <p class="strategy_ranking_chart_percent"><span id="topVal01">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="topCategory" id="topContainer01">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="strategy_ranking_chart">
+                        <p class="strategy_ranking_chart_title" id="topSName01">策略名称2</p>
+                        <p class="strategy_ranking_chart_percent"><span id="topVal01">6.888</span><span>%</span></p>
+                        <!--<p class="strategy_ranking_chart_text">文字文字</p>-->
+                        <div class="strategy_ranking_chart_img">
+                            <div class="topCategory" id="topContainer01">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- import highChart -->
+            <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+            <script type="text/javascript" src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
+            <script src="{% static 'js/strategyCharts.js' %}" ></script>
+
+            <script type="text/javascript">
+                var categories = {{categories|safe}};
+                var vals = {{vals|safe}};
+
+                resultOptions.series[0].name = 'test1';
+                resultOptions.series[0].data = vals;
+                resultOptions.xAxis[0].categories = categories;
+                //var chart = new Highcharts.Chart('StockChart', resultOptions);
+                var chart = new Highcharts.StockChart(resultOptions);
+
+                function drawList(){
+                    var resultPage = document.getElementById('resultListContainer');
+                    var newChartContainer = document.createElement('div');
+                    newChartContainer.style.height = '400px';
+                    resultPage.appendChild(newChartContainer);
+                }
+            </script>
+        </div>
+    </div>
+{% endblock %}
+

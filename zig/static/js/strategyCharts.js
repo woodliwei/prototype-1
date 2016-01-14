@@ -2,6 +2,58 @@
  * 策略展示js 
  */
 
+var resultOptions ={
+    chart: {
+        backgroundColor: '#fff',
+        spacing: [0, 0, 0, 0],
+        margin: [40, 20, 30, 80],
+        zoomType: 'x',
+        renderTo: 'mainContainer'
+    },
+    rangeSelector : {
+        selected : 1
+    },
+    title : {
+        align: 'left',
+        text: '',
+        style: {
+            fontSize: '12px',
+            color: '#e7e7e7',
+            fontWeight: 'bold'
+        }
+    },
+    xAxis: [{
+        type: 'datetime',
+        dateTimeLabelFormats: {
+            day: '%e of %b'
+        },
+        title: {
+            text: null
+        },
+        gridLineWidth: 1,
+        gridLineColor: '#ddd',
+        gridLineDashStyle: 'dash',
+        minTickInterval: 10
+    }],
+    yAxis: [{
+        title: {
+            text: '百分比 (%)'
+        },
+        gridLineWidth: 1,
+        gridLineColor: '#ddd'
+
+    }],
+    series : [{
+        color: '#b51120',
+        turboThreshold: 1440,
+        marker: {
+            enabled: false
+        },
+        tooltip: {
+            valueDecimals: 2
+        }
+    }]
+};
 
 var chartOptions = {
 

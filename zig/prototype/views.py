@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 from django.shortcuts import render_to_response
+from django.shortcuts import HttpResponse
 import json
 from .models import MyData
 from .models import Mysite
@@ -48,8 +49,9 @@ def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
 def local_test(requst):
-    testDBAction()
-    return render_to_response("about_us.html", get_context("about_us"))
+    #testDBAction()
+    return render_to_response("bigdata_trend_test_result_hc.html", get_context("test_sample"))
+    #return HttpResponse("bigdata_trend_test_result_hc.html")
 
 
 def testDBAction():
@@ -136,6 +138,17 @@ def get_context(pageName):
         "under_construction":
             {
                 "no_navBar": True,
+            },
+        "test_sample":
+            {
+                "title_bigdata": "active",
+                "nav_historyTest": "active",
+                "StockName": json.dumps("600001.ss"),
+                "categories": json.dumps(MyData.dateList2),
+                "vals": json.dumps(MyData.marketData2),
+                "resultList": json.dumps(MyData.resultList),
+                "startDate": json.dumps(MyData.startDate),
+                "endDate": json.dumps(MyData.endDate),
             }
     }
     return activeDict[pageName]
