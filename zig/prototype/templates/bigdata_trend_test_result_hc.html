@@ -43,19 +43,29 @@
             <script type="text/javascript">
                 var categories = {{categories|safe}};
                 var vals = {{vals|safe}};
-
-                resultOptions.series[0].name = 'test1';
-                resultOptions.series[0].data = vals;
-                resultOptions.xAxis[0].categories = categories;
+                var avg_5_10 = {{ avg_5_10|safe }};
+                var avg_5 = [];
+                var avg_10 = [];
+                var tempDate = Date.UTC('2015', '1' ,'1');
+                //avg_5.push([new Date.UTC(2015, 1 ,1), 0]);
+                avg_5_10.forEach(function(e){
+                    //avg_5.push(new Date.UTC(2015, 1 ,1), 0);
+                    var dateStrings = e[0].split('/');
+                    //var tempDate = Date.UTC(parseInt(dateStrings[0]), parseInt(dateStrings[1]), parseInt(dateStrings[2]));
+                    var tempDate = Date.UTC(dateStrings[0], dateStrings[1], dateStrings[2]);
+                    avg_5.push([tempDate, e[1]]);
+                    avg_10.push([tempDate, e[2]]);
+                });
+                //resultOptions.series[0].name = 'test1';
+                //resultOptions.series[0].data = vals;
+                //resultOptions.xAxis[0].categories = categories;
                 //var chart = new Highcharts.Chart('StockChart', resultOptions);
-                var chart = new Highcharts.StockChart(resultOptions);
-
-                function drawList(){
-                    var resultPage = document.getElementById('resultListContainer');
-                    var newChartContainer = document.createElement('div');
-                    newChartContainer.style.height = '400px';
-                    resultPage.appendChild(newChartContainer);
-                }
+                //var chart = new Highcharts.StockChart(resultOptions);
+                avgOptions.series[0].name = 'test1';
+                avgOptions.series[1].name = 'test2';
+                avgOptions.series[0].data = avg_5;
+                avgOptions.series[1].data = avg_10;
+                var chart = new Highcharts.StockChart(avgOptions);
             </script>
         </div>
     </div>

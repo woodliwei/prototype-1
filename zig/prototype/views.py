@@ -146,6 +146,7 @@ def get_context(pageName):
                 "StockName": json.dumps("600001.ss"),
                 "categories": json.dumps(MyData.dateList2),
                 "vals": json.dumps(MyData.marketData2),
+                "avg_5_10": json.dumps(MyData.avg_5_10),
                 "resultList": json.dumps(MyData.resultList),
                 "startDate": json.dumps(MyData.startDate),
                 "endDate": json.dumps(MyData.endDate),
