@@ -5,3 +5,20 @@ git diff --cached  (diff)
 git commit (commit to local repository)
 git push origin master (commit to server's master branch)
 git pull origin (get data from server)
+
+
+Other
+*** how to resolve conflict ***
+1. Using GitHub sync whith error "Sync failed"
+2. Open git shell
+   a. git stash
+   b. git pull
+   c. git stash pop
+   d. you can use git status to see what file need to be merged
+   e. open conflic file you will see conflict file with content like this
+       <<<<<<< Updated upstream
+        import os
+        import json
+        =======
+   f. remove un necessary lines to finish merge.
+   g. git add to add the files you just resolved. (you can use git status to see all file status.)
