@@ -6,8 +6,9 @@ var avgOptions ={
     chart: {
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
-        margin: [40, 20, 30, 80],
-        renderTo: 'mainContainer'
+        margin: [10, 0, 25, 0],
+        renderTo: 'digram_5_10',
+        pinchType:'None'
     },
     rangeSelector : {
         selected : 0

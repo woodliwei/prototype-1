@@ -22,8 +22,10 @@ def bigdata_trend_testing(requst):
 def bigdata_trend_test_result(request):
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
+
 def bigdata_trend_test_result_dynamic(request):
     return render_to_response('bigdata_trend_test_result_dynamic.html', get_context("bigdata_trend_test_result_dynamic"))
+
 
 def bigdata_history(request):
     return render_to_response('bigdata_history.html', get_context("bigdata_history"))
@@ -50,7 +52,7 @@ def under_construction(requst):
 
 def local_test(requst):
     #testDBAction()
-    return render_to_response("bigdata_trend_test_result_hc.html", get_context("test_sample"))
+    return render_to_response("bigdata_trend_test_result_dynamic.html", get_context("test_sample"))
     #return HttpResponse("bigdata_trend_test_result_hc.html")
 
 
