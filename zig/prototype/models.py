@@ -1,7 +1,27 @@
 
 # -*- coding: utf-8 -*-
+
 import os
 import json
+
+
+# Add
+#  s = Mysite(title='test_Title', url='http://testURL', author='guoqingc', num='0')
+#  s.save()
+
+# Search and Update
+# s = Mysite.objects.get(title='test_Title')
+# s.url = 'http://testURL2'
+# s.save()
+
+# Delete
+# s = Mysite.objects.get(title='test_Title')
+# s.delete()
+
+# Delete All
+# Mysite.objects.all().delete()
+
+
 from django.db import models
 
 
@@ -9,7 +29,16 @@ class Mysite(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField()
     author = models.CharField(max_length=100)
-    num = models.IntegerField(max_length=10)
+    num = models.IntegerField()
+
+class Indexs(models.Model):
+    name = models.CharField(max_length=50)
+    definition = models.CharField(max_length=100)
+
+class ProductInfo(models.Model):
+    symbol = models.CharField(max_length=10,primary_key=True)
+    cn_name = models.CharField(max_length=10)
+
 
 class MyData:
     #currentPath = os.getcwd()

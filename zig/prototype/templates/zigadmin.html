@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{%  block no_navBarContent %}
+    <div class="container center-block" style="width: 70%" >
+        <div class="row">
+            <br/><br/>
+            <div class="panel panel-default ">
+                <div class="panel-body ">
+                    <div class="page-header-top">
+                        <h1>Admin</h1>
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

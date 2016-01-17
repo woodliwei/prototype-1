@@ -13,10 +13,12 @@ urlpatterns = [
     url(r'^bigdata_result/$', views.bigdata_trend_test_result, name='bigdata_result'),
     url(r'^bigdata_result_dynamic/$', views.bigdata_trend_test_result_dynamic, name='bigdata_result_dynamic'),
     # url(r'^bigdata_history/$', views.bigdata_history, name='bigdata_history'),
+    url(r'^zigadmin/$', views.zig_admin),
     url(r'^aboutus/$', views.about_us, name='aboutus'),
     url(r'^admin/', admin.site.urls),
     url(r'^local_test/', views.local_test),
     url(r'^$', views.strat_trend_manage),
     url(r'^.+/$', views.under_construction),
+
 ]
 

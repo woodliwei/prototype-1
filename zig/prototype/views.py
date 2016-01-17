@@ -2,17 +2,11 @@
 
 from __future__ import unicode_literals
 from django.shortcuts import render_to_response
-from django.shortcuts import HttpResponse
-import json
-from .models import MyData
-from .models import Mysite
 from .controls import *
-
-def hello1(request, num):
-    try:
-        num = int(num)
-    except ValueError:
-        raise Http404()
+from .models import *
+from .product import *
+import sys
+import datetime
 
 
 def bigdata_trend_testing(requst):
@@ -43,6 +37,34 @@ def strat_shop(requst):
     return render_to_response("strat_shop.html", get_context("strat_shop"))
 
 
+def log(msg):
+    print >>sys.stderr, datetime.datetime.now(), msg
+
+
+#    ***********     zig_admin performance test result     ***********
+# 2016-01-17 13:57:09.623000 Deleting product DB... (deleting 70mm)
+# 2016-01-17 13:57:09.692000 Start query product info... (query web api 1,017mm)
+# 2016-01-17 13:57:10.709000 Done. (insert 211mm)
+# 2016-01-17 13:57:10.920000 fetching stock info done:2817
+def zig_admin(request):
+    message = "No action specified."
+    if request.GET.get('refreshproduct') == 'true':
+        log("Start refreshing product DB...")
+        log("Deleting product DB...")
+        ProductInfo.objects.all().delete()
+        log("Start query product info...")
+        allstocks = ProductPicker.getAllStocks()
+        log("Done. \r\nSaving to DB...")
+        products = []
+        for stock in allstocks:
+            product = ProductInfo(symbol=stock["symbol"], cn_name=stock["name"])
+            products.append(product)
+        ProductInfo.objects.bulk_create(products)
+        message = "fetching stock info done:" + str(len(allstocks))
+        log(message)
+    return render_to_response("zigadmin.html", {"message": message, "no_navBar": True})
+
+
 def about_us(requst):
     return render_to_response("about_us.html", get_context("about_us"))
 
@@ -51,28 +73,7 @@ def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
 def local_test(requst):
-    #testDBAction()
     return render_to_response("bigdata_trend_test_result_dynamic.html", get_context("test_sample"))
-    #return HttpResponse("bigdata_trend_test_result_hc.html")
-
-
-def testDBAction():
-    # Add
-     s = Mysite(title='test_Title', url='http://testURL', author='guoqingc', num='0')
-     s.save()
-
-    # Search and Update
-    # s = Mysite.objects.get(title='test_Title')
-    # s.url = 'http://testURL2'
-    # s.save()
-
-    # Delete
-    # s = Mysite.objects.get(title='test_Title')
-    # s.delete()
-
-    # Delete All
-    # Mysite.objects.all().delete()
-
 
 
 # Set active items in Title Bar and Nav Bar
