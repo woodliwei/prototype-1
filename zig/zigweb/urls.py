@@ -18,7 +18,6 @@ from django.contrib import admin
 from prototype.views import *
 
 urlpatterns = [
-    url(r'^hello/(\d+)/$', hello1),
     url(r'^admin/', admin.site.urls),
     # the original url mapping changed to prototype/urls.py
     url(r'', include('prototype.urls', namespace='zig-prototype'))
