@@ -129,15 +129,15 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/dev/howto/static-files/
 
-STATIC_URL = '/static/'
 HERE = os.path.dirname(os.path.dirname(__file__))
 
 # WRONG! wrong DIR please refer following
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'), )
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/dev/howto/static-files/
+STATIC_URL = '/static/'
 # here the static_root is MyDjango\zig\static\ !!!
 STATIC_ROOT = os.path.join(HERE, 'static').replace('\\', '/')
 STATICFILES_DIRS = (

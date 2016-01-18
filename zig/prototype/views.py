@@ -5,8 +5,7 @@ from django.shortcuts import render_to_response
 from .controls import *
 from .models import *
 from .product import *
-import sys
-import datetime
+from Utility.Utils import *
 
 
 def bigdata_trend_testing(requst):
@@ -37,32 +36,17 @@ def strat_shop(requst):
     return render_to_response("strat_shop.html", get_context("strat_shop"))
 
 
-def log(msg):
-    print >>sys.stderr, datetime.datetime.now(), msg
-
-
-#    ***********     zig_admin performance test result     ***********
-# 2016-01-17 13:57:09.623000 Deleting product DB... (deleting 70mm)
-# 2016-01-17 13:57:09.692000 Start query product info... (query web api 1,017mm)
-# 2016-01-17 13:57:10.709000 Done. (insert 211mm)
-# 2016-01-17 13:57:10.920000 fetching stock info done:2817
 def zig_admin(request):
     message = "No action specified."
     if request.GET.get('refreshproduct') == 'true':
-        log("Start refreshing product DB...")
-        log("Deleting product DB...")
-        ProductInfo.objects.all().delete()
-        log("Start query product info...")
-        allstocks = ProductPicker.getAllStocks()
-        log("Done. \r\nSaving to DB...")
-        products = []
-        for stock in allstocks:
-            product = ProductInfo(symbol=stock["symbol"], cn_name=stock["name"])
-            products.append(product)
-        ProductInfo.objects.bulk_create(products)
-        message = "fetching stock info done:" + str(len(allstocks))
-        log(message)
+        message = handle_refresh_product()
     return render_to_response("zigadmin.html", {"message": message, "no_navBar": True})
+
+
+# todo add zig_api here
+# def zig_api(request):
+#     if request.GET.get('source') == 'productinfo':
+#         if len(request.GET.get('value')) > 0:
 
 
 def about_us(requst):
@@ -156,3 +140,24 @@ def get_context(pageName):
             }
     }
     return activeDict[pageName]
+
+
+#    ***********     refresh product performance test result     ***********
+# 2016-01-17 13:57:09.623000 Deleting product DB... (deleting 70mm)
+# 2016-01-17 13:57:09.692000 Start query product info... (query web api 1,017mm)
+# 2016-01-17 13:57:10.709000 Done. (insert 211mm)
+# 2016-01-17 13:57:10.920000 fetching stock info done:2817
+def handle_refresh_product():
+    log("Start refreshing product DB...")
+    log("Deleting product DB...")
+    ProductInfo.objects.all().delete()
+    log("Start query product info...")
+    allstocks = ProductPicker.getAllStocks()
+    log("Done. \r\nSaving to DB...")
+    products = []
+    for stock in allstocks:
+        product = ProductInfo(symbol=stock["symbol"], cn_name=stock["name"])
+        products.append(product)
+    ProductInfo.objects.bulk_create(products)
+    message = "fetching stock info done:" + str(len(allstocks))
+    return message

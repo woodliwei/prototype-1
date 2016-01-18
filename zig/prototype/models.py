@@ -1,9 +1,6 @@
-
 # -*- coding: utf-8 -*-
 
-import os
-import json
-
+from django.db import models
 
 # Add
 #  s = Mysite(title='test_Title', url='http://testURL', author='guoqingc', num='0')
@@ -20,9 +17,6 @@ import json
 
 # Delete All
 # Mysite.objects.all().delete()
-
-
-from django.db import models
 
 
 class Mysite(models.Model):

@@ -9,8 +9,8 @@ class ShowMysite(admin.ModelAdmin):
     search_fields = ('title', 'author')
 
 class ShowProductInfo(admin.ModelAdmin):
-    list_display = ('symbol','cn_name')
-    search_fields = ('symbol','cn_name')
+    list_display = ('symbol', 'cn_name')
+    search_fields = ('symbol', 'cn_name')
 
 admin.site.register(Mysite, ShowMysite)
 admin.site.register(ProductInfo, ShowProductInfo)
