@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^aboutus/$', views.about_us, name='aboutus'),
     url(r'^admin/', admin.site.urls),
     url(r'^local_test/', views.local_test),
+    url(r'^api/$', views.api),
     url(r'^$', views.strat_trend_manage),
     url(r'^.+/$', views.under_construction),
 

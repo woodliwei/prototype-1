@@ -6,6 +6,9 @@ from .controls import *
 from .models import *
 from .product import *
 from Utility.Utils import *
+from Utility import webapi
+from rtmd import *
+from django.http import HttpResponse
 
 
 def bigdata_trend_testing(requst):
@@ -43,10 +46,13 @@ def zig_admin(request):
     return render_to_response("zigadmin.html", {"message": message, "no_navBar": True})
 
 
-# todo add zig_api here
-# def zig_api(request):
-#     if request.GET.get('source') == 'productinfo':
-#         if len(request.GET.get('value')) > 0:
+def api(request):
+    result = ""
+    if request.GET.get('ty') == 'rtmd':
+        products = request.GET.get('value')
+        if products is not None:
+            result = SinaRTMD(webapi.getDetailedRtmd(products)).toJsonString()
+    return HttpResponse(result)
 
 
 def about_us(requst):
@@ -61,12 +67,6 @@ def local_test(requst):
 
 
 # Set active items in Title Bar and Nav Bar
-#   "title_strategy": "active",
-#   "title_bigdata": "",
-#   "title_aboutUs": "",
-#   "nav_trendTest": "active",
-#   "nav_historyData": "",
-#   "nav_historyTest": ""
 def get_context(pageName):
     activeDict= {
         "bigdata_trend_test_result_dynamic":
