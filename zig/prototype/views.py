@@ -48,8 +48,10 @@ def api(request):
         products = request.GET.get('value')
         if products is not None:
             result = SinaRTMD(webapi.getDetailedRtmd(products)).toJsonString()
-    return HttpResponse(result)
-
+    response = HttpResponse(result)
+    # set no cache in repsonse header
+    response['Cache-Control'] = 'no-cache'
+    return response
 
 def about_us(requst):
     return render_to_response("about_us.html", get_context("about_us"))
