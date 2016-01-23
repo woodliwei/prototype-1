@@ -8,16 +8,16 @@
 //Old is Jquery Json to table script
 //New: Current script
 
-function createTable(jsonTblObj, containerID, className, createHeader)
+function createTable(jsonTblObj, containerID, className, createHeader, visibleCols)
 {
     if(jsonTblObj.length == 0 || containerID.length == 0)
         return;
     var tblContainer = document.getElementById(containerID);
-    tblContainer.innerHTML = createTableHtml(jsonTblObj, className, createHeader);
+    tblContainer.innerHTML = createTableHtml(jsonTblObj, className, createHeader, visibleCols);
 }
 
 
-function createTableHtml(jsonTblObj, className, createHeader)
+function createTableHtml(jsonTblObj, className, createHeader, visibleCols)
 {
     var html = "<table ";
     //add class
@@ -29,22 +29,25 @@ function createTableHtml(jsonTblObj, className, createHeader)
     //create header
     if(createHeader)
     {
-        html+=createTheadHtml(jsonTblObj[0]);
+        html+=createTheadHtml(jsonTblObj[0],visibleCols);
     }
     //create body
     for(var row in jsonTblObj)
     {
-        html += createTrHtml(jsonTblObj[row]);
+        html += createTrHtml(jsonTblObj[row], visibleCols);
     }
     return html + "</table>";
 }
 
 
-function createTrHtml(jsonRowObj)
+function createTrHtml(jsonRowObj, visibleCols)
 {
     var html = '<tr>';
     for( var col in jsonRowObj)
     {
+        if(visibleCols!= null && visibleCols.indexOf(col) == -1)
+            continue;
+
         var data = jsonRowObj[col];
         if(typeof data === 'string')
         {
@@ -56,11 +59,14 @@ function createTrHtml(jsonRowObj)
 }
 
 
-function createTheadHtml(jsonRowObj)
+function createTheadHtml(jsonRowObj, visibleCols)
 {
     var html = '<thead><tr>';
     for(var col in jsonRowObj)
     {
+        if(visibleCols!= null && visibleCols.indexOf(col) == -1)
+            continue;
+
         var data = col;
         if(typeof data === 'string')
         {

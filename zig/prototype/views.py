@@ -19,12 +19,8 @@ def bigdata_trend_test_result(request):
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
 
-def bigdata_trend_test_result_dynamic(request):
-    return render_to_response('bigdata_trend_test_result_dynamic.html', get_context("bigdata_trend_test_result_dynamic"))
-
-
-def bigdata_history(request):
-    return render_to_response('bigdata_history.html', get_context("bigdata_history"))
+def bigdata_mktdata(request):
+    return render_to_response('bigdata_mkt_data.html', get_context("bigdata_mkt_data"))
 
 
 def strat_trend_manage(requst):
@@ -68,7 +64,7 @@ def local_test(requst):
 
 # Set active items in Title Bar and Nav Bar
 def get_context(pageName):
-    activeDict= {
+    context_mapping= {
         "bigdata_trend_test_result_dynamic":
             {
                 "title_bigdata": "active",
@@ -80,14 +76,6 @@ def get_context(pageName):
                 "startDate": json.dumps(MyData.startDate),
                 "endDate": json.dumps(MyData.endDate),
             },
-        "bigdata_history":
-            {
-                "title_bigdata": "active",
-                "nav_historyData": "active",
-                "SHIndexName": json.dumps("上证指数"),
-                "dateList": json.dumps(MyData.dateList),
-                "marketData": json.dumps(MyData.marketData),
-            },
         "bigdata_trend_testing":
             {
                 "title_bigdata": "active",
@@ -95,10 +83,15 @@ def get_context(pageName):
                 "buy_indexes_list": SelectDropdown("buyList", "multiselect", MyData.buyindexes),
                 "sell_indexes_list": SelectDropdown("sellList", "multiselect", MyData.sellindexes),
             },
-            "bigdata_trend_test_result":
+        "bigdata_trend_test_result":
             {
                 "title_bigdata": "active",
                 "nav_historyTest": "active",
+            },
+        "bigdata_mkt_data":
+            {
+                "title_bigdata": "active",
+                "nav_mktData": "active",
             },
         "strat_manage":
             {
@@ -114,7 +107,7 @@ def get_context(pageName):
             },
         "strat_shop":
             {
-                  "title_strategy": "active",
+                "title_strategy": "active",
                 "nav_strat_shop": "active",
             },
         "about_us":
@@ -139,7 +132,7 @@ def get_context(pageName):
                 "endDate": json.dumps(MyData.endDate),
             }
     }
-    return activeDict[pageName]
+    return context_mapping[pageName]
 
 
 #    ***********     refresh product performance test result     ***********

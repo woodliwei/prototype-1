@@ -1,0 +1,90 @@
+{% extends "bigdata_base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <script src="{% static "js/Utils.js" %}"></script>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>大数据
+                    <small>市场数据</small>
+                </h1>
+            </div>
+            选择股票
+            <select multiple="multiple" id="stockSelector">
+                <option value="sz300498">温氏股份</option>
+                <option value="sz300497">富祥股份</option>
+                <option value="sz300496">中科创达</option>
+                <option value="sz300495">美尚生态</option>
+                <option value="sz300494">盛天网络</option>
+                <option value="sz300493">润欣科技</option>
+                <option value="sz300492">山鼎设计</option>
+                <option value="sh600080">金花股份</option>
+                <option value="sh600079">人福医药</option>
+                <option value="sh600078">澄星股份</option>
+                <option value="sh600077">宋都股份</option>
+                <option value="sh600076">青鸟华光</option>
+            </select>
+            选择数据类型
+            <select class="multiselect">
+                <option selected="true">实时数据</option>
+                {#                <option >逐笔成交数据</option>#}
+                {#                <option >分钟数据</option>#}
+                {#                <option >小时数据</option>#}
+                {#                <option >日数据</option>#}
+            </select>
+            {#            选择时间范围#}
+
+            <div id="dataContainer">
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.multiselect').multiselect();
+
+            $('#stockSelector').multiselect(
+                    {
+                        numberDisplayed: 10,
+                        onChange: function (option, checked, select) {
+                            refreshMktData();
+                        }
+                    }
+            );
+        });
+
+        var timer = null;
+        function startTimer() {
+            if(timer != null)
+                clearTimeout(timer);
+            timer =setTimeout("refreshMktData()",20000);
+        }
+
+        function refreshMktData() {
+            var selectedItems = $('#stockSelector').data('multiselect').getSelected();
+            var products = "";
+            for (var i = 0; i < selectedItems.length; i++) {
+                products += selectedItems[i].value + ","
+            }
+            getMktData(products);
+            if(products != "")
+            {
+                startTimer();
+            }
+        }
+
+        function getMktData(products) {
+            $.getJSON("{% url 'prototype:api'%}?ty=rtmd&value=" + products, processMktData);
+        }
+
+        function processMktData(json) {
+            createTable(json, "dataContainer", "table table-striped", true, ["cn_name", "ap", "bp", "vs", "cp", "symbol", "op", "time"]);
+        }
+
+    </script>
+{% endblock %}
+
