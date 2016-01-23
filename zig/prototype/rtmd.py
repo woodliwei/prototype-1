@@ -59,7 +59,7 @@ class SinaRTMD:
         # format datastring remove "var hq-str_shxxxx="" part.
         dataString = sinaString[data_start_pos + 1: -2]
         # get symbol
-        data["symbol"] = dataString[data_start_pos - 9: data_start_pos - 1]
+        data["symbol"] = sinaString[data_start_pos - 9: data_start_pos - 1]
         return SinaRTMD.__parseString(data, dataString)
 
     @staticmethod
