@@ -3,9 +3,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render_to_response
 from .controls import *
-from .models import *
 from .product import *
-from Utility.Utils import *
 from Utility import webapi
 from rtmd import *
 from django.http import HttpResponse
@@ -38,7 +36,7 @@ def strat_shop(requst):
 def zig_admin(request):
     message = "No action specified."
     if request.GET.get('refreshproduct') == 'true':
-        message = handle_refresh_product()
+        message = ProductHelper.refresh_productDB(webapi)
     return render_to_response("zigadmin.html", {"message": message, "no_navBar": True})
 
 
@@ -53,6 +51,7 @@ def api(request):
     response['Cache-Control'] = 'no-cache'
     return response
 
+
 def about_us(requst):
     return render_to_response("about_us.html", get_context("about_us"))
 
@@ -60,13 +59,14 @@ def about_us(requst):
 def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
+
 def local_test(requst):
     return render_to_response("bigdata_trend_test_result_dynamic.html", get_context("test_sample"))
 
 
 # Set active items in Title Bar and Nav Bar
 def get_context(pageName):
-    context_mapping= {
+    context_mapping = {
         "bigdata_trend_test_result_dynamic":
             {
                 "title_bigdata": "active",
@@ -136,23 +136,3 @@ def get_context(pageName):
     }
     return context_mapping[pageName]
 
-
-#    ***********     refresh product performance test result     ***********
-# 2016-01-17 13:57:09.623000 Deleting product DB... (deleting 70mm)
-# 2016-01-17 13:57:09.692000 Start query product info... (query web api 1,017mm)
-# 2016-01-17 13:57:10.709000 Done. (insert 211mm)
-# 2016-01-17 13:57:10.920000 fetching stock info done:2817
-def handle_refresh_product():
-    log("Start refreshing product DB...")
-    log("Deleting product DB...")
-    ProductInfo.objects.all().delete()
-    log("Start query product info...")
-    allstocks = ProductPicker.getAllStocks()
-    log("Done. \r\nSaving to DB...")
-    products = []
-    for stock in allstocks:
-        product = ProductInfo(symbol=stock["symbol"], cn_name=stock["name"])
-        products.append(product)
-    ProductInfo.objects.bulk_create(products)
-    message = "fetching stock info done:" + str(len(allstocks))
-    return message

@@ -64,3 +64,7 @@ def getDetailedRtmd(stocks):
 def getAllMoneyFlowInfo():
     url = 'http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/MoneyFlow.ssl_bkzj_lxjlr?num=10000'
     return getSinaApiResult(url)
+
+
+def getAllProdInfo():
+    return getAllMoneyFlowInfo()
