@@ -4,31 +4,34 @@
 
 {% block content %}
     <script src="{% static "js/Utils.js" %}"></script>
+    <script src="{% static "js/select2.full.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static 'css/select2.min.css' %}" type="text/css"/>
+
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="page-header">
                 <h1>大数据
-                    <small>市场数据</small>
+                    <small>市场数据<small>(demo版30秒实时数据刷新间隔)</small></small>
                 </h1>
             </div>
             选择股票
-            <select multiple="multiple" id="stockSelector">
-                <option value="sz300498">温氏股份</option>
-                <option value="sz300497">富祥股份</option>
-                <option value="sz300496">中科创达</option>
-                <option value="sz300495">美尚生态</option>
-                <option value="sz300494">盛天网络</option>
-                <option value="sz300493">润欣科技</option>
-                <option value="sz300492">山鼎设计</option>
-                <option value="sh600080">金花股份</option>
-                <option value="sh600079">人福医药</option>
-                <option value="sh600078">澄星股份</option>
-                <option value="sh600077">宋都股份</option>
-                <option value="sh600076">青鸟华光</option>
+            <select multiple="multiple" id="stockSelector2" style="width: 60%">
+                <option value="sz300498" py="wsgf">温氏股份</option>
+                <option value="sz300497" py="fxgf">富祥股份</option>
+                <option value="sz300496" py="zkcd">中科创达</option>
+                <option value="sz300495" py="msst">美尚生态</option>
+                <option value="sz300494" py="stwl">盛天网络</option>
+                <option value="sz300493" py="rxkj">润欣科技</option>
+                <option value="sz300492" py="sdsj">山鼎设计</option>
+                <option value="sh600080" py="jhgf">金花股份</option>
+                <option value="sh600079" py="rfyy">人福医药</option>
+                <option value="sh600078" py="cxgf">澄星股份</option>
+                <option value="sh600077" py="sdgf">宋都股份</option>
+                <option value="sh600076" py="qnhg">青鸟华光</option>
             </select>
             选择数据类型
             <select class="multiselect">
-                <option selected="true">实时数据</option>
+                <option selected="selected">实时数据</option>
                 {#                <option >逐笔成交数据</option>#}
                 {#                <option >分钟数据</option>#}
                 {#                <option >小时数据</option>#}
@@ -44,36 +47,59 @@
     </div>
 
     <script>
+        var select2;
         $(document).ready(function () {
             $('.multiselect').multiselect();
 
-            $('#stockSelector').multiselect(
-                    {
-                        numberDisplayed: 10,
-                        onChange: function (option, checked, select) {
-                            refreshMktData();
-                        }
+            $.fn.select2.amd.require(['select2/compat/matcher'], initSelect2);
+
+            $("#stockSelector2").on("change", function (e) {
+                refreshMktData();
+            });
+        });
+
+        initSelect2 = function (oldMatcher) {
+            $("#stockSelector2").select2({
+                        matcher: productMatcher,
+                        minimumInputLength: 3,
+                        placeholder: "请输入股票名称/代码/拼音， '***'显示全部"
                     }
             );
-        });
+        };
+
+        function productMatcher(params, data) {
+            matchArray = [data.text.toLowerCase(), data.id.toLowerCase(), data.element.getAttribute("py").toLowerCase()];
+            //var matchArray = [data.text.toLowerCase(), data.id.toLowerCase()];
+            var input = params.term.toLowerCase();
+            if(input.indexOf("***") > -1)
+                return data;
+            for (var i = 0; i < matchArray.length; i++) {
+                if (matchArray[i].indexOf(input) > -1)
+                    return data;
+            }
+            return null;
+        }
 
         var timer = null;
         function startTimer() {
-            if(timer != null)
+            if (timer != null)
                 clearTimeout(timer);
-            timer =setTimeout("refreshMktData()",20000);
+            timer = setTimeout("refreshMktData()", 30000);
         }
 
         function refreshMktData() {
-            var selectedItems = $('#stockSelector').data('multiselect').getSelected();
+            var selectedItems = $("#stockSelector2").select2("data");
             var products = "";
             for (var i = 0; i < selectedItems.length; i++) {
-                products += selectedItems[i].value + ","
+                products += selectedItems[i].id + ","
             }
-            getMktData(products);
-            if(products != "")
-            {
+            if (products != "") {
+                getMktData(products);
                 startTimer();
+            }
+            else {
+                //clear table
+                createTable(null, "dataContainer");
             }
         }
 
@@ -84,7 +110,6 @@
         function processMktData(json) {
             createTable(json, "dataContainer", "table table-striped", true, ["cn_name", "ap", "bp", "vs", "cp", "symbol", "op", "time"]);
         }
-
     </script>
 {% endblock %}
 
