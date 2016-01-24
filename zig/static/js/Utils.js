@@ -8,14 +8,18 @@
 //Old is Jquery Json to table script
 //New: Current script
 
-function createTable(jsonTblObj, containerID, className, createHeader, visibleCols)
-{
-    if(jsonTblObj.length == 0 || containerID.length == 0)
+function createTable(jsonTblObj, containerID, className, createHeader, visibleCols) {
+    if (containerID.length == 0)
         return;
     var tblContainer = document.getElementById(containerID);
-    tblContainer.innerHTML = createTableHtml(jsonTblObj, className, createHeader, visibleCols);
+    if (jsonTblObj != null && jsonTblObj.length > 0 ) {
+        tblContainer.innerHTML = createTableHtml(jsonTblObj, className, createHeader, visibleCols);
+    }
+    else
+    {
+        tblContainer.innerHTML = "";
+    }
 }
-
 
 function createTableHtml(jsonTblObj, className, createHeader, visibleCols)
 {
