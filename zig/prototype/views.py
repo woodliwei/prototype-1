@@ -89,6 +89,10 @@ def get_context(pageName):
             {
                 "title_bigdata": "active",
                 "nav_historyTest": "active",
+                "avg_5_10": json.dumps(MyData.avg_5_10),
+                "gain_5_10": json.dumps(MyData.gain_5_10),
+                "avg_5_50": json.dumps(MyData.avg_5_50),
+                "gain_5_50": json.dumps(MyData.gain_5_50),
             },
         "bigdata_mkt_data":
             {

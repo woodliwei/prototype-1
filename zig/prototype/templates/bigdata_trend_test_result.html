@@ -22,13 +22,9 @@
             </div>
             <div class="col-md-12">
                 五日,十日均线
-                <a href="{% static 'img/mav_5_10.png' %}" class="thumbnail">
-                    <img src="{% static 'img/mav_5_10_small.png' %}" />
-                </a>
+                <div id="digram_5_10" style="min-width:800px;height:400px"></div>
                 表现
-                <a href="{% static 'img/performance_5_10.png' %}" class="thumbnail">
-                    <img src="{% static 'img/performance_5_10_small.png' %}" />
-                </a>
+                <div id="gain_5_10" style="min-width:800px;height:400px"></div>
             </div>
             <div class="col-md-3 alert alert-dismissible fade in" role="alert">
                 <div class="panel panel-default">
@@ -44,14 +40,57 @@
 
             <div class="col-md-12">
                 五日,五十日均线
-                <a href="{% static 'img/mav_5_50.png' %}" class="thumbnail">
-                    <img src="{% static 'img/mav_5_50_small.png' %}" />
-                </a>
+                <div id="digram_5_50" style="min-width:800px;height:400px"></div>
                 表现
-                <a href="{% static 'img/performance_5_50.png' %}" class="thumbnail">
-                    <img src="{% static 'img/performance_5_50_small.png' %}" />
-                </a>
+                <div id="gain_5_50" style="min-width:800px;height:400px"></div>
             </div>
+            <!-- import highChart -->
+            <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+            <script type="text/javascript" src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
+            <script src="{% static 'js/strategyCharts.js' %}" ></script>
+
+            <script type="text/javascript">
+                Highcharts.setOptions(avgOptions);
+                var avg_5_10 = {{ avg_5_10|safe }};
+                var gain_5_10 = {{ gain_5_10|safe }};
+                var avg_5_50 = {{ avg_5_50|safe }};
+                var gain_5_50 = {{ gain_5_50|safe }};
+                var line1 =[];
+                var line2 =[];
+
+                parseData(avg_5_10);
+                var char_avg5_10 = createNewChart('digram_5_10', 'avg5', line1, 'avg10', line2);
+                parseData(gain_5_10);
+                var char_gain5_10 = createNewChart('gain_5_10', 'price', line1, 'cash', line2);
+                parseData(avg_5_50);
+                var char_avg5_50 = createNewChart('digram_5_50', 'avg5', line1, 'avg50', line2);
+                parseData(gain_5_50);
+                var char_gain5_50 = createNewChart('gain_5_50', 'price', line1, 'cash', line2);
+
+                function parseData(dataSet){
+                    line1.length = 0;
+                    line2.length = 0;
+                    dataSet.forEach(function(e){
+                        var dateStrings = e[0].split('/');
+                        var tempDate = Date.UTC(dateStrings[0], dateStrings[1], dateStrings[2]);
+                        line1.push([tempDate, e[1]]);
+                        line2.push([tempDate, e[2]]);
+                    });
+                };
+
+                function createNewChart(renderTo, lineName1, data1, lineName2, data2){
+                  return new Highcharts.StockChart({
+                                   chart:{
+                                       renderTo: renderTo,
+                                   },
+                                   series: [
+                                       { name: lineName1, data: data1, },
+                                       { name: lineName2, data: data2, }
+                                   ]
+                                });
+                };
+
+            </script>
         </div>
     </div>
 {% endblock %}

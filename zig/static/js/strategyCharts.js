@@ -7,7 +7,7 @@ var avgOptions ={
         backgroundColor: '#fff',
         spacing: [0, 0, 0, 0],
         margin: [10, 0, 25, 0],
-        renderTo: 'digram_5_10',
+        renderTo: '',
         pinchType:'None'
     },
     rangeSelector : {
