@@ -9,28 +9,45 @@ class ProductHelper:
 
     @staticmethod
     def __getAllStocks(dataprovider):
-        result = dataprovider.getAllProdInfo()
+        result = dataprovider.getAllStockProdInfo()
         stocks = json.loads(result)
         return stocks
 
+    @staticmethod
+    def __getAllFunds(dataprovider):
+        result = dataprovider.getAllFundProdInfo()
+        funds = json.loads(result)
+        return funds
+
 #    ***********     refresh product performance test result     ***********
-# 2016-01-17 13:57:09.623000 Deleting product DB... (deleting 70mm)
-# 2016-01-17 13:57:09.692000 Start query product info... (query web api 1,017mm)
-# 2016-01-17 13:57:10.709000 Done. (insert 211mm)
-# 2016-01-17 13:57:10.920000 fetching stock info done:2817
+# 2016-01-25 22:49:49.581000 Start refreshing product DB...
+# 2016-01-25 22:49:49.583000 Deleting product DB...
+# 2016-01-25 22:49:49.676000 Start query product info...
+# 2016-01-25 22:49:50.804000 Done.
+# 2016-01-25 22:49:51.130000 Saved to DB.
     @staticmethod
     def refresh_productDB(dataprovider):
         Utils.log("Start refreshing product DB...")
+
         Utils.log("Deleting product DB...")
         ProductInfo.objects.all().delete()
+
         Utils.log("Start query product info...")
         stocks = ProductHelper.__getAllStocks(dataprovider)
-        Utils.log("Done. \r\nSaving to DB...")
+        funds = ProductHelper.__getAllFunds(dataprovider)
+
+        Utils.log("Saving to DB....")
         products = []
+        # insert product info
         for stock in stocks:
-            product = ProductInfo(symbol=stock["symbol"], cn_name=stock["name"])
+            product = ProductInfo(symbol=stock["symbol"], cn_name=stock["name"], issue_type="stock")
+            products.append(product)
+        for fund in funds:
+            product = ProductInfo(symbol=fund["symbol"], cn_name=fund["name"], issue_type="fund")
             products.append(product)
         ProductInfo.objects.bulk_create(products)
-        message = "Fetching stock info done:" + str(len(stocks))
+        Utils.log("Done.")
+
+        message = "Fetching stock info done:" + str(len(products))
         return message
 

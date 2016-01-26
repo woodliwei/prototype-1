@@ -30,8 +30,9 @@ class Indexs(models.Model):
     definition = models.CharField(max_length=100)
 
 class ProductInfo(models.Model):
-    symbol = models.CharField(max_length=10,primary_key=True)
-    cn_name = models.CharField(max_length=10)
+    symbol = models.CharField(max_length=10, primary_key=True)
+    cn_name = models.CharField(max_length=20)
+    issue_type = models.CharField(max_length=12)
 
 
 class MyData:
