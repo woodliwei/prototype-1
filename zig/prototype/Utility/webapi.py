@@ -13,7 +13,7 @@ def getSinaApiResult(url):
 
 
 def addDoubleQuote(jsonString):
-    return re.sub(u'([A-Za-z]\w+)\:', addDoubleQuoteInRe, jsonString)
+    return re.sub(u'([A-Za-z]\w+):', addDoubleQuoteInRe, jsonString)
 
 
 def addDoubleQuoteInRe(match):
@@ -43,6 +43,8 @@ def addDoubleQuoteInRe(match):
 # 2016-01-17 21:25:27.959000 getting rtmd from web api done (34mm)
 
 # todo add more check here. 1. must start with alphabet. Only contain [a-zA-Z][0-9]
+# BUGBUG http://127.0.0.1:8000/api/?ty=rtmd&value=f_370027
+# http://127.0.0.1:8000/api/?ty=rtmd&value=fu_370027
 def getDetailedRtmd(stocks):
     url = 'http://hq.sinajs.cn/list=' + stocks
     return getSinaApiResult(url)
@@ -66,5 +68,42 @@ def getAllMoneyFlowInfo():
     return getSinaApiResult(url)
 
 
-def getAllProdInfo():
+def getAllStockProdInfo():
     return getAllMoneyFlowInfo()
+
+
+#http://vip.stock.finance.sina.com.cn/fund_center/data/jsonp.php/IO.XSRV2.CallbackList['6XxbX6h4CED0ATvW']/NetValue_Service.getNetValueOpen?page=1&num=1
+#IO.XSRV2.CallbackList['6XxbX6h4CED0ATvW'](({total_num:3428,
+# data:[{
+# symbol:253010,
+# sname:"国联安安心成长混合",  -->changed to name by webapi
+# per_nav:"0.6510",
+# total_nav:"1.9450",
+# yesterday_nav:0.651,
+# nav_rate:0,
+# nav_a:0,
+# sg_states:"开放",
+# nav_date:"2016-01-25",
+# fund_manager:"冯俊",
+# jjlx:"股债平衡型基金",
+# jjzfe:4299930000}
+# ],exec_time:0.28220200538635,sort_time:0.029391050338745}))
+def getAllFundProdInfo():
+    url = "http://vip.stock.finance.sina.com.cn/fund_center/data/jsonp.php/fun/NetValue_Service.getNetValueOpen?page=1&num=10000"
+    data = getSinaApiResult(url)
+    startPos = data.find("[{")
+    endPos = data.rfind("]")
+    # replace sname to name so it has the same "name" field as stock.
+    return data[startPos:endPos+1].replace("sname", "name")
+
+
+# 基金
+# 封闭式基金
+# http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?page=1&num=100&sort=changepercent&asc=0&node=close_fund
+
+#       var hq_str_fu_370027="上投摩根智选30混合,15:04:00,1.4233,1.4010,1.4010,0.0492,1.5917,2016-01-22";
+#       var hq_str_f_370027= "上投摩根智选30混合,1.414,1.414,1.401,2016-01-22,2.57045";
+# http://vip.stock.finance.sina.com.cn/fund_center/data/jsonp.php/IO.XSRV2.CallbackList['6XxbX6h4CED0ATvW']/NetValue_Service.getNetValueOpen?page=1&num=40&sort=nav_date&asc=0&ccode=&type2=0&type3=
+
+
+

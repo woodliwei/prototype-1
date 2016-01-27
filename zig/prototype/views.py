@@ -42,13 +42,17 @@ def zig_admin(request):
 
 def api(request):
     result = ""
+    nocache = False
+
     if request.GET.get('ty') == 'rtmd':
         products = request.GET.get('value')
-        if products is not None:
+        if products is not None and len(products) > 0:
             result = SinaRTMD(webapi.getDetailedRtmd(products)).toJsonString()
+            nocache = True
     response = HttpResponse(result)
     # set no cache in repsonse header
-    response['Cache-Control'] = 'no-cache'
+    if nocache:
+        response['Cache-Control'] = 'no-cache'
     return response
 
 
