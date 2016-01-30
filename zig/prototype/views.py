@@ -16,6 +16,8 @@ def bigdata_trend_testing(requst):
 def bigdata_trend_test_result(request):
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
+def bigdata_trend_test_result_new(request):
+    return render_to_response('bigdata_trend_test_result_new.html', get_context("bigdata_trend_test_result"))
 
 def bigdata_mktdata(request):
     return render_to_response('bigdata_mkt_data.html', get_context("bigdata_mkt_data"))
@@ -63,25 +65,9 @@ def about_us(requst):
 def under_construction(requst):
     return render_to_response("under_construction.html", get_context("under_construction"))
 
-
-def local_test(requst):
-    return render_to_response("bigdata_trend_test_result_dynamic.html", get_context("test_sample"))
-
-
 # Set active items in Title Bar and Nav Bar
 def get_context(pageName):
     context_mapping = {
-        "bigdata_trend_test_result_dynamic":
-            {
-                "title_bigdata": "active",
-                "nav_historyTest": "active",
-                "StockName": json.dumps("600001.ss"),
-                "dateList": json.dumps(MyData.dateList),
-                "marketData": json.dumps(MyData.marketData),
-                "resultList": json.dumps(MyData.resultList),
-                "startDate": json.dumps(MyData.startDate),
-                "endDate": json.dumps(MyData.endDate),
-            },
         "bigdata_trend_testing":
             {
                 "title_bigdata": "active",
@@ -93,10 +79,7 @@ def get_context(pageName):
             {
                 "title_bigdata": "active",
                 "nav_historyTest": "active",
-                "avg_5_10": json.dumps(MyData.avg_5_10),
-                "gain_5_10": json.dumps(MyData.gain_5_10),
-                "avg_5_50": json.dumps(MyData.avg_5_50),
-                "gain_5_50": json.dumps(MyData.gain_5_50),
+                "testResults": MyData.testResults,
             },
         "bigdata_mkt_data":
             {
@@ -128,18 +111,6 @@ def get_context(pageName):
         "under_construction":
             {
                 "no_navBar": True,
-            },
-        "test_sample":
-            {
-                "title_bigdata": "active",
-                "nav_historyTest": "active",
-                "StockName": json.dumps("600001.ss"),
-                "categories": json.dumps(MyData.dateList2),
-                "vals": json.dumps(MyData.marketData2),
-                "avg_5_10": json.dumps(MyData.avg_5_10),
-                "resultList": json.dumps(MyData.resultList),
-                "startDate": json.dumps(MyData.startDate),
-                "endDate": json.dumps(MyData.endDate),
             }
     }
     return context_mapping[pageName]
