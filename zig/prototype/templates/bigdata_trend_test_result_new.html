@@ -1,0 +1,96 @@
+{% extends "bigdata_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>量化<small>趋势指标回测结果</small></h1>
+            </div>
+
+            <div>股票名称:            测试股票1</div>
+            <div class="col-md-12" id="container"></div>
+
+            <!-- import highChart -->
+            <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+            <script type="text/javascript" src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
+            <script src="{% static 'js/resultCharts.js' %}" ></script>
+
+            <script type="text/javascript">
+                Highcharts.setOptions(resultOptions);
+                var testResults = {{ testResults|safe }};
+                $(document).ready(function(){
+                    renderResults();
+                });
+
+                function renderResults(){
+                    var resultIndex = 0;
+                    testResults.forEach(function(result){
+                        addResult(result, "test" + resultIndex.toString());
+                        resultIndex ++;
+                    });
+                }
+
+                function addResult(result, resultID){
+                    var container = document.getElementById("container");
+                    var resultContainer = document.createElement("div");
+                    resultContainer.id = resultID + "container";
+                    resultContainer.textContent = result["testName"];
+                    container.appendChild(resultContainer);
+
+                    for (dataKey in result["testResult"]){
+                        renderChart(resultContainer, resultID + dataKey,  result["testResult"][dataKey]);
+                    };
+                }
+
+                function  renderChart(parentContainer, dataID, data){
+                    var dataContainer = document.createElement("div");
+                    var dataChart = document.createElement("div");
+                    dataContainer.textContent = data["name"];
+                    dataContainer.id = dataID + "container";
+                    dataChart.id = dataID;
+                    dataContainer.appendChild(dataChart);
+                    parentContainer.appendChild(dataContainer);
+
+                    // parse x axes data
+                    var dateArray = formatDate(data["dateList"]);
+                    // set option
+                    var option = new Object();
+                    option.chart = resultOptions.chart;
+                    option.chart.renderTo = dataID;
+                    option.series = resultOptions.series;
+                    var seriesIndex = 0;
+                    for (dataKey in data) {
+                        if(dataKey != "name" & dataKey != "dateList"){
+                            if (!option.series[seriesIndex]) {
+                                option.series[seriesIndex] = new Object();
+                            }
+                            option.series[seriesIndex].name = dataKey;
+                            option.series[seriesIndex].data = formatResultData(dateArray, data[dataKey]);
+                            seriesIndex ++;
+                        }
+                    }
+                    // create chart
+                    var chart = new Highcharts.StockChart(option);
+                }
+                function formatDate(dateList){
+                    var dateArray = [];
+                    dateList.forEach(function (dateItem) {
+                        var dateSet = dateItem.split('/');
+                        dateArray.push(Date.UTC(dateSet[0], dateSet[1], dateSet[2]));
+                    })
+                    return dateArray;
+                }
+
+                function formatResultData(dateArray, dataSet){
+                    var resultData = [];
+                    for(var i = 0; i < dateArray.length; i++){
+                        resultData.push([dateArray[i], dataSet[i]]);
+                    }
+                    return resultData;
+                }
+            </script>
+        </div>
+    </div>
+{% endblock %}
+

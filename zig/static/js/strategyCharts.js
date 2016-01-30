@@ -2,57 +2,6 @@
  * 策略展示js 
  */
 
-var avgOptions ={
-    chart: {
-        backgroundColor: '#fff',
-        spacing: [0, 0, 0, 0],
-        margin: [10, 0, 25, 0],
-        renderTo: 'digram_5_10',
-        pinchType:'None'
-    },
-    rangeSelector : {
-        selected : 0
-    },
-    title : {
-        text : ''
-    },
-    tooltip: {
-        style: {
-            width: '200px'
-        },
-        valueDecimals: 4,
-        shared : true
-    },
-    xAxis: {
-        type: 'datetime',
-        dateTimeLabelFormats: { // don't display the dummy year
-                month: '%e. %b',
-                year: '%b'
-        }
-    },
-    yAxis : {
-        title : {
-            text : 'avg price'
-        }
-    },
-    series: [{
-        type: 'spline',
-        color: '#b51120',
-        turboThreshold: 1440,
-        marker: {
-            enabled: false
-        }
-    }, {
-        type: 'spline',
-        color: '#c83df2',
-        turboThreshold: 1440,
-        marker: {
-            enabled: false
-        }
-    }
-    ]
-}
-
 var resultOptions ={
     chart: {
         backgroundColor: '#fff',

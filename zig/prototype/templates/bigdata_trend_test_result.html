@@ -4,6 +4,9 @@
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-body">
+            <button class="btn btn-primary" type="submit" onclick="window.location='{% url 'prototype:bigdata_result_new' %}'">
+                最新结果
+            </button>
             <div class="page-header">
                 <h1>量化<small>趋势指标回测结果</small></h1>
             </div>
@@ -24,7 +27,7 @@
                 五日,十日均线
                 <a href="{% static 'img/mav_5_10.png' %}" class="thumbnail">
                     <img src="{% static 'img/mav_5_10_small.png' %}" />
-                </a>
+                 </a>
                 表现
                 <a href="{% static 'img/performance_5_10.png' %}" class="thumbnail">
                     <img src="{% static 'img/performance_5_10_small.png' %}" />
