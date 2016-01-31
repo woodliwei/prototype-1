@@ -4712,8 +4712,8 @@ class MyData:
     #    "avg10": avg10_Data,
     # }
     avg_5_10_Data = "{\"name\": \"五日十日\", \"dateList\": " \
-                    + avgDate + ", \"avg5\": " \
-                    + avg5_Data + ", \"avg10\": " \
+                    + avgDate + ", \"五日均线\": " \
+                    + avg5_Data + ", \"十日均线\": " \
                     + avg10_Data + ", }"
 
     # json
@@ -4724,8 +4724,8 @@ class MyData:
     #    "cash": gainCash_5_10,
     # }
     gain_5_10Data = "{\"name\": \"收益\", \"dateList\": " \
-                    + gainDate_5_10 + ", \"price\": " \
-                    + gainPrice_5_10 + ", \"cash\": " \
+                    + gainDate_5_10 + ", \"价格\": " \
+                    + gainPrice_5_10 + ", \"资金\": " \
                     + gainCash_5_10 + ", }"
 
     # json
@@ -4736,8 +4736,8 @@ class MyData:
     #    "avg50": avg50_Data,
     # }
     avg_5_50_Data = "{\"name\": \"五日五十日\", \"dateList\": " \
-                    + avgDate + ", \"avg5\": " \
-                    + avg5_Data + ", \"avg50\": " \
+                    + avgDate + ", \"五日均线\": " \
+                    + avg5_Data + ", \"五十日均线\": " \
                     + avg50_Data + ", }"
 
     # json
@@ -4748,8 +4748,8 @@ class MyData:
     #    "cash": gainCash_5_50,
     # }
     gain_5_50Data = "{\"name\": \"收益\", \"dateList\": " \
-                    + gainDate_5_50 + ", \"price\": " \
-                    + gainPrice_5_50 + ", \"cash\": " \
+                    + gainDate_5_50 + ", \"价格\": " \
+                    + gainPrice_5_50 + ", \"资金\": " \
                     + gainCash_5_50 + ", }"
 
     # json
