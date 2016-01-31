@@ -5,6 +5,13 @@ from Utility import Utils
 from .models import *
 
 
+class ProductType:
+    unknown = -1
+    stock = 0
+    fund = 1
+    index = 2
+
+
 class ProductHelper:
 
     @staticmethod
