@@ -77,13 +77,21 @@ var resultOptions ={
             stroke: '#68A',
             zIndex: 7
             },
+        inputDateFormat: '%Y-%m-%d',
+        inputEditDateFormat: '%Y-%m-%d',
     },
     xAxis: {
         type: 'datetime',
-        dateTimeLabelFormats: { // don't display the dummy year
-                month: '%e. %b',
-                year: '%b'
-        }
+        dateTimeLabelFormats: {
+            day: '%Y-%m-%d'
+        },
+        title: {
+            text: null
+        },
+        gridLineWidth: 1,
+        gridLineColor: '#ddd',
+        gridLineDashStyle: 'dash',
+        minTickInterval: 10
     },
     yAxis : {
         title : {
