@@ -99,14 +99,12 @@ var resultOptions ={
         }
     },
     series: [{
-        type: 'spline',
         color: '#b51120',
         turboThreshold: 1440,
         marker: {
             enabled: false
         }
     }, {
-        type: 'spline',
         color: '#c83df2',
         turboThreshold: 1440,
         marker: {
