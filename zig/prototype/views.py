@@ -6,7 +6,7 @@ from .controls import *
 from .product import *
 from Utility import webapi
 from rtmd import *
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def bigdata_trend_testing(requst):
@@ -14,6 +14,10 @@ def bigdata_trend_testing(requst):
 
 
 def bigdata_trend_test_result(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login/?next=%s' % request.path)
+    if not request.user.has_perm('prototype.view_test_result'):
+        return HttpResponse("您没有运行回测的权限，请联系管理员。")
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
 def bigdata_trend_test_result_new(request):
