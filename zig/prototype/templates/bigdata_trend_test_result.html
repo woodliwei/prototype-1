@@ -2,65 +2,60 @@
 {% load staticfiles %}
 
 {% block content %}
-    {% if perms.prototype.view_test_result %}
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <button class="btn btn-primary" type="submit" onclick="window.location='{% url 'prototype:bigdata_result_new' %}'">
-                    新版页面
-                </button>
-                <div class="page-header">
-                    <h1>量化<small>趋势指标回测结果</small></h1>
-                </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <button class="btn btn-primary" type="submit" onclick="window.location='{% url 'prototype:bigdata_result_new' %}'">
+                新版页面
+            </button>
+            <div class="page-header">
+                <h1>量化<small>趋势指标回测结果</small></h1>
+            </div>
 
-                <div>股票名称:            测试股票1</div>
-                <div class="col-md-3 alert alert-dismissible fade in" id="testTemplate" role="alert">
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">回测1</div>
-                        <!-- List group -->
-                        <ul class="list-group">
-                            <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿十日</span></li>
-                            <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿十日</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    五日,十日均线
-                    <a href="{% static 'img/mav_5_10.png' %}" class="thumbnail">
-                        <img src="{% static 'img/mav_5_10_small.png' %}" />
-                     </a>
-                    表现
-                    <a href="{% static 'img/performance_5_10.png' %}" class="thumbnail">
-                        <img src="{% static 'img/performance_5_10_small.png' %}" />
-                    </a>
-                </div>
-                <div class="col-md-3 alert alert-dismissible fade in" role="alert">
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">回测2</div>
-                        <!-- List group -->
-                        <ul class="list-group">
-                            <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿五十日</span></li>
-                            <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿五十日</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    五日,五十日均线
-                    <a href="{% static 'img/mav_5_50.png' %}" class="thumbnail">
-                        <img src="{% static 'img/mav_5_50_small.png' %}" />
-                    </a>
-                    表现
-                    <a href="{% static 'img/performance_5_50.png' %}" class="thumbnail">
-                        <img src="{% static 'img/performance_5_50_small.png' %}" />
-                    </a>
+            <div>股票名称:            测试股票1</div>
+            <div class="col-md-3 alert alert-dismissible fade in" id="testTemplate" role="alert">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">回测1</div>
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿十日</span></li>
+                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿十日</span></li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-12">
+                五日,十日均线
+                <a href="{% static 'img/mav_5_10.png' %}" class="thumbnail">
+                    <img src="{% static 'img/mav_5_10_small.png' %}" />
+                 </a>
+                表现
+                <a href="{% static 'img/performance_5_10.png' %}" class="thumbnail">
+                    <img src="{% static 'img/performance_5_10_small.png' %}" />
+                </a>
+            </div>
+            <div class="col-md-3 alert alert-dismissible fade in" role="alert">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">回测2</div>
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item"><span class="label label-success">买入</span><span class="buy">五日上穿五十日</span></li>
+                        <li class="list-group-item"><span class="label label-danger">卖出</span><span class="sell">五日下穿五十日</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                五日,五十日均线
+                <a href="{% static 'img/mav_5_50.png' %}" class="thumbnail">
+                    <img src="{% static 'img/mav_5_50_small.png' %}" />
+                </a>
+                表现
+                <a href="{% static 'img/performance_5_50.png' %}" class="thumbnail">
+                    <img src="{% static 'img/performance_5_50_small.png' %}" />
+                </a>
+            </div>
         </div>
-        {% else %}
-            <p>请联系管理员。</p>
-            <p>您没有查看回测结果的权限。</p>
-    {% endif %}
+    </div>
 {% endblock %}
 

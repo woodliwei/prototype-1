@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^zigadmin/$', views.zig_admin),
     url(r'^aboutus/$', views.about_us, name='aboutus'),
     url(r'^admin/', admin.site.urls),
+    url(r'^login_test/', views.login_testing, name='login_test'),
     url(r'^api/$', views.api, name='api'),
     url(r'^$', views.strat_trend_manage),
     url(r'^.+/$', views.under_construction),
