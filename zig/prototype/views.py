@@ -6,18 +6,28 @@ from .controls import *
 from .product import *
 from Utility import webapi
 from rtmd import *
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
-def bigdata_trend_testing(requst):
+def login_testing(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/admin/login/?next=%s' % request.path)
+    if not request.user.has_perm('prototype.view_test_result'):
+        return HttpResponse("您没有运行回测的权限，请联系管理员。")
+    return render_to_response('login_test.html')
+
+
+def bigdata_trend_testing(request):
     return render_to_response("bigdata_trend_testing.html", get_context("bigdata_trend_testing"))
 
 
 def bigdata_trend_test_result(request):
     return render_to_response('bigdata_trend_test_result.html', get_context("bigdata_trend_test_result"))
 
+
 def bigdata_trend_test_result_new(request):
     return render_to_response('bigdata_trend_test_result_new.html', get_context("bigdata_trend_test_result"))
+
 
 def bigdata_mktdata(request):
     return render_to_response('bigdata_mkt_data.html', get_context("bigdata_mkt_data"))

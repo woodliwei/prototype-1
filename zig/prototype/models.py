@@ -26,9 +26,21 @@ class Mysite(models.Model):
     author = models.CharField(max_length=100)
     num = models.IntegerField()
 
+
 class Indexs(models.Model):
     name = models.CharField(max_length=50)
     definition = models.CharField(max_length=100)
+
+
+class RegressionTest(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        permissions = (
+            ("run_test", "Run regression test"),
+            ("view_test_result", "View regression test result")
+        )
+
 
 class ProductInfo(models.Model):
     symbol = models.CharField(max_length=10, primary_key=True)
